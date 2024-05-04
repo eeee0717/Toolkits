@@ -1,7 +1,12 @@
 <template>
   <nav px6 py4 text-lg border="b base" flex="~ gap-2 items-center">
-    <div i-carbon-campsite text-4xl />
-    <span text-2xl>Toolkits</span>
+    <NuxtLink
+      flex
+      href="/"
+    >
+      <div i-carbon-campsite text-4xl />
+      <span text-2xl>Toolkits</span>
+    </NuxtLink>
     <div flex-auto />
     <ColorSchemeToggle />
     <NuxtLink

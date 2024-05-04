@@ -1,6 +1,13 @@
+<script setup lang="ts">
+
+</script>
+
 <template>
-  <div class="w-screen h-screen of-hidden" grid="~ rows-[max-content_1fr]">
+  <main class="w-screen h-screen of-hidden" grid="~ rows-[max-content_1fr]">
     <TheNav />
-    <slot />
-  </div>
+    <div class="h-full of-hidden grid grid-cols-[1fr_6fr]">
+      <ToolNav class="border-r border-base" />
+      <slot />
+    </div>
+  </main>
 </template>

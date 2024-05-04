@@ -14,6 +14,9 @@ importers:
       pinia:
         specifier: ^2.1.7
         version: 2.1.7(typescript@5.4.5)(vue@3.4.26(typescript@5.4.5))
+      splitpanes:
+        specifier: ^3.1.5
+        version: 3.1.5
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.2.1

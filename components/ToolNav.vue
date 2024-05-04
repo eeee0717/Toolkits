@@ -1,8 +1,9 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
   <div>
-    <p>hello</p>
+    <slot />
   </div>
 </template>
