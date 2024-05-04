@@ -1,11 +1,24 @@
 <script setup lang="ts">
+const { x, y } = useMouse()
+const color = useColorMode()
 
-const {x, y} = useMouse()
-
+function toggleDark() {
+  color.value = color.value === 'dark'
+    ? 'light'
+    : 'dark'
+}
 </script>
 
 <template>
-  <div>
-   hello world {{ x }},{{ y }}
+  <div class="grid grid-cols-[1fr_2fr] h-full of-hidden max-h-full">
+    <div class="border-r border-base p4">
+      Content
+      <div class="text-red">
+        Hello World {{ x }}, {{ y }} <br>
+        <button @click="toggleDark">
+          {{ color.value }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
