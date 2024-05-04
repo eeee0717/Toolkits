@@ -1,13 +1,7 @@
 <script setup lang="ts">
-const links = [{
-  label: '正则表达式',
-  icon: 'i-heroicons-command-line',
-  to: '/reg',
-}, {
-  label: '格式转换',
-  icon: 'i-heroicons-code-bracket-square',
-  to: '/transform',
-}]
+import { navLinks } from '~/utils/navLinks'
+
+const links = navLinks
 </script>
 
 <template>

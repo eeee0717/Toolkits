@@ -4,6 +4,7 @@ export default defineConfig({
   shortcuts: {
     'border-base': 'border-gray:50',
     'bg-active': 'bg-gray:10',
+    'container-p-base': 'p2',
   },
   presets: [
     presetUno(),

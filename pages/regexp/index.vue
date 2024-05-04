@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="container-p-base">
     <h1>
       This is Reg index
     </h1>
