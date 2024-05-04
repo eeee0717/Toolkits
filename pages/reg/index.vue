@@ -3,5 +3,9 @@
 </script>
 
 <template>
-  <div />
+  <div>
+    <h1>
+      This is Reg index
+    </h1>
+  </div>
 </template>
