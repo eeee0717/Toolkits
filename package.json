@@ -24,6 +24,7 @@
     "@nuxtjs/color-mode": "^3.3.2",
     "@unocss/nuxt": "^0.57.7",
     "@unocss/preset-icons": "^0.57.7",
+    "@unocss/transformer-directives": "^0.59.4",
     "@vueuse/nuxt": "^10.6.1",
     "eslint": "^8.54.0",
     "nuxt": "^3.8.2",

@@ -8,7 +8,6 @@ const reg = ref<RegExp | null>(null)
 watchEffect(() => {
   try {
     reg.value = regStr.value ? new RegExp(regStr.value, regFlag.value.join('')) : null
-    console.log(reg.value)
   }
   catch (e) {
     reg.value = null
@@ -27,11 +26,34 @@ const regFlagList: RegFlag[] = [
 watchEffect(() => {
   regFlag.value = regTempFlag.value.map(item => item.value)
 })
+// 要匹配的字符串
+const matchStr = ref<string>('')
+// 匹配结果
+const matchingRes = computed(
+  () => matchStr.value.match(reg.value!)?.filter(v => v) || [],
+)
+const matchingFormat = computed(() => {
+  let res = ''
+  let str = matchStr.value
+  let n = 1
+  matchingRes.value.forEach((v) => {
+    if (n > 2)
+      n = 1
+    const matchStr = str.substring(0, v.length + str.indexOf(v))
+    str = str.substring(v.length + str.indexOf(v))
+    res += matchStr.replace(
+      v,
+      `<span class="matching matching${n}">${v}</span>`,
+    )
+    n++
+  })
+  return res + str
+})
 </script>
 
 <template>
   <div class="max-w-1200px w-full p-20px box-border">
-    <!-- 上 -->
+    <!-- 输入正则表达式 -->
     <div class="flex justify-start items-center space-x-2">
       <UTooltip :text="`点击${auto ? '关闭' : '开启'}预设正则自动匹配`">
         <UButton
@@ -58,13 +80,40 @@ watchEffect(() => {
         </template>
       </USelectMenu>
     </div>
-    <!-- 中 -->
-    <div class="mt-20px bg-[var(--color-fill-2)]">
-      <p>2</p>
+    <!-- 要匹配的字符串 -->
+    <div class="mt-20px ">
+      <UTextarea v-model="matchStr" class="w-md" autoresize :rows="5" :maxrows="5" placeholder="请输入要匹配的字符串" />
     </div>
-    <!-- 下 -->
-    <div class="w-full mt-20px">
-      <p>3</p>
+    <div
+      class="w-md min-h-100px whitespace-pre-wrap  mt-20px px-2px py-4px b border-base "
+      v-html="matchingFormat || '无匹配结果'"
+    />
+    <!-- 输出匹配结果 -->
+    <div
+      v-if="matchingRes.length > 0"
+      class="w-full min-h-100px  whitespace-pre-wrap   mt-20px px-2px py-4px "
+    >
+      <div>共 {{ matchingRes.length }} 处匹配：</div>
+      <div v-for="(res, i) of matchingRes" :key="i">
+        {{ res }}
+      </div>
     </div>
   </div>
 </template>
+
+<style>
+.matching {
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.matching1 {
+  background-color: rgb(255,208,111);
+}
+
+.matching2{
+  background-color: rgb(231,098,084);
+}
+</style>
