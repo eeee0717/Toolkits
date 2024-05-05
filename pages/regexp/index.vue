@@ -110,10 +110,10 @@ const matchingFormat = computed(() => {
 }
 
 .matching1 {
-  background-color: rgb(255,208,111);
+  border: 1px solid rgb(255,208,111);
 }
 
 .matching2{
-  background-color: rgb(231,098,084);
+  border: 1px solid rgb(231,098,084);
 }
 </style>
