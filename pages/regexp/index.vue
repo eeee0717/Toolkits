@@ -2,7 +2,7 @@
 import type { NamedRegExp } from '~/utils/regexp'
 import { regPresetsList } from '~/utils/regexp'
 
-// 是否自动匹配
+// 是否开启AI匹配
 const auto = ref(true)
 const regStr = ref('')
 const regFlag = ref<string[]>([])
@@ -66,7 +66,7 @@ const matchingFormat = computed(() => {
   <div class="max-w-1200px w-full p-20px box-border">
     <!-- 输入正则表达式 -->
     <div class="flex justify-start items-center space-x-2">
-      <UTooltip :text="`点击${auto ? '关闭' : '开启'}预设正则自动匹配`">
+      <UTooltip :text="`点击${auto ? '关闭' : '开启'}预设正则AI匹配`">
         <UButton
           class="justify-center items-center"
           color="primary" variant="outline" :icon="`${auto ? 'i-carbon-flash' : 'i-carbon-flash-off'}`"
