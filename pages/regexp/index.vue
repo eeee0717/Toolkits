@@ -1,6 +1,17 @@
 <script setup lang="ts">
 // 是否自动匹配
 const auto = ref(true)
+const regStr = ref('')
+const regFlag = ref([])
+const reg = ref<RegExp | null>(null)
+watchEffect(() => {
+  try {
+    reg.value = regStr.value ? new RegExp(regStr.value, regFlag.value.join('')) : null
+  }
+  catch (e) {
+    reg.value = null
+  }
+})
 </script>
 
 <template>
@@ -9,14 +20,19 @@ const auto = ref(true)
     <div class="flex justify-start items-center space-x-2">
       <UTooltip :text="`点击${auto ? '关闭' : '开启'}预设正则自动匹配`">
         <UButton
-          class="w-8 h-8 justify-center items-center"
+          class="justify-center items-center"
           color="primary" size="sm" variant="outline" :icon="`${auto ? 'i-carbon-flash' : 'i-carbon-flash-off'}`"
           @click="auto = !auto"
         />
       </UTooltip>
-      <UInput>
+
+      <UInput v-model="regStr" size="md" placeholder="请输入正则表达式">
         <template #leading>
-          <UIcon name="i-carbon-warning-alt" dynamic />
+          <UIcon :class="`${!reg ? 'color-amber' : 'color-emerald'}`" :name="`${!reg ? 'i-carbon-warning-alt' : 'i-carbon-checkmark-outline'}`" dynamic />
+          <span class="ml-5px">/</span>
+        </template>
+        <template #trailing>
+          <span class="ml-5px">/</span>
         </template>
       </UInput>
     </div>
