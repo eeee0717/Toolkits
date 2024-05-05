@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import type { NamedRegExp } from '~/utils/regexp'
+import { regPresetsList } from '~/utils/regexp'
+
 // 是否自动匹配
 const auto = ref(true)
 const regStr = ref('')
 const regFlag = ref<string[]>([])
 const regTempFlag = ref<RegFlag[]>([])
 const reg = ref<RegExp | null>(null)
+const regPresetTemp = ref<NamedRegExp | null>()
+
 watchEffect(() => {
   try {
     reg.value = regStr.value ? new RegExp(regStr.value, regFlag.value.join('')) : null
@@ -26,6 +31,12 @@ const regFlagList: RegFlag[] = [
 watchEffect(() => {
   regFlag.value = regTempFlag.value.map(item => item.value)
 })
+
+watchEffect(() => {
+  regStr.value = regPresetTemp.value?.value || ''
+  regPresetTemp.value = null
+})
+
 // 要匹配的字符串
 const matchStr = ref<string>('')
 // 匹配结果
@@ -79,13 +90,14 @@ const matchingFormat = computed(() => {
           <span>筛选修饰符</span>
         </template>
       </USelectMenu>
+      <USelectMenu v-model="regPresetTemp!" placeholder="常用正则表达式" :options="regPresetsList" />
     </div>
     <!-- 要匹配的字符串 -->
     <div class="mt-20px ">
-      <UTextarea v-model="matchStr" class="w-md" autoresize :rows="5" :maxrows="5" placeholder="请输入要匹配的字符串" />
+      <UTextarea v-model="matchStr" class="w-35rem" autoresize :rows="5" :maxrows="5" placeholder="请输入要匹配的字符串" />
     </div>
     <div
-      class="w-md min-h-100px whitespace-pre-wrap  mt-20px px-2px py-4px b border-base "
+      class="w-35rem min-h-100px whitespace-pre-wrap  mt-20px px-2px py-4px b border-base "
       v-html="matchingFormat || '无匹配结果'"
     />
     <!-- 输出匹配结果 -->

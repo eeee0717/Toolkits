@@ -1,9 +1,26 @@
-interface NamedRegExp {
-  pattern: RegExp
-  name: string
+export interface NamedRegExp {
+  value: string
+  label: string
+}
+export const isNumber: NamedRegExp = {
+  value: '^[0-9]*$',
+  label: '匹配数字',
 }
 
-export const isNumber: NamedRegExp = {
-  pattern: /^[0-9]*$/g,
-  name: '匹配数字',
+export const isChinese: NamedRegExp = {
+  value: '[\u4E00-\u9FA5]',
+  label: '匹配中文',
+
 }
+
+export const isEmail: NamedRegExp = {
+  value: '[\\w!#$%&\'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&\'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?',
+  label: '匹配邮箱',
+
+}
+
+export const regPresetsList: NamedRegExp[] = [
+  isNumber,
+  isChinese,
+  isEmail,
+]
