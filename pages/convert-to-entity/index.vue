@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="container-p-base">
+  <div>
     <h1>
       This is Convert to entity index
     </h1>

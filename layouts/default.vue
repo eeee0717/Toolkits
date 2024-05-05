@@ -7,7 +7,9 @@
     <TheNav />
     <div class="h-full of-hidden grid grid-cols-[1fr_6fr]">
       <ToolNav class="border-r border-base" />
-      <slot />
+      <div class=" container-p-base">
+        <slot />
+      </div>
     </div>
   </main>
 </template>
