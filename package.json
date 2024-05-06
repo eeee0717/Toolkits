@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "dotenv": "^16.4.5",
+    "joi": "^17.13.1",
+    "openai": "^4.41.0",
     "pinia": "^2.1.7"
   },
   "devDependencies": {
