@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Joi from 'joi'
 import { regPresetsList } from '~/utils/regexp'
+import {regPrompt} from '~/utils/system-prompts'
 import type { FormSubmitEvent } from '#ui/types'
 
 // 是否开启AI匹配
@@ -10,6 +11,7 @@ const regStr = ref('')
 const regFlag = ref<string[]>([])
 const reg = ref<RegExp | null>(null)
 const regPresetTemp = ref({value:'', label:''})
+const regPromptStorage = useLocalStorage('regPrompt', regPrompt)
 
 watchEffect(() => {
   try {
@@ -136,6 +138,11 @@ async function onSubmit(event: FormSubmitEvent<any>) {
     <!-- AI匹配 -->
     <div v-show="auto">
       <div class="max-w-100 grid grid-auto-flow-row">
+        <div>
+          <label>系统提示词</label>
+          <UTextarea :rows="12"  v-model="regPromptStorage" resize/>
+ 
+        </div>
         <UForm class="min-w-80 space-y-3" :schema="scheme" :state="state" @submit="onSubmit">
           <UFormGroup label="要匹配的原文" name="docText">
             <UInput v-model="state.docText" />
