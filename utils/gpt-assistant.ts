@@ -18,9 +18,11 @@ function check()
 }
 
 export async function AIchat(propmt: string, content: string) {
-  if(!check())
+  const model = useLocalStorage('selectedModel', '')
+  // console.log(model.value)
+  if(!check() || model.value === '')
   {
-    return
+    return''
   }
   // console.log('AIchat', propmt, content)
   const completion = await openai.chat.completions.create({
@@ -28,8 +30,22 @@ export async function AIchat(propmt: string, content: string) {
       { role: 'system', content: propmt },
       { role: 'user', content: content }
     ],
-    model: 'gpt-4-turbo',
+    model: model.value,
   })
   // console.log(completion)
   return completion.choices[0].message.content
+}
+
+export async function GetModelList(){
+  if(!check())
+  {
+    return[]
+  }
+  // console.log('models')
+  const models = await openai.models.list()
+  // console.log(models.data.map((model)=>model.id))
+  if(models.data.length == 0) {
+    return []
+  }
+  return models.data.map((model)=>model.id)
 }
