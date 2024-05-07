@@ -8,6 +8,9 @@
       <span text-2xl>Toolkits</span>
     </NuxtLink>
     <div flex-auto />
+    <NuxtLink flex href="/settings" >
+      <div i-carbon-settings text-2xl></div>
+    </NuxtLink>
     <ColorSchemeToggle />
     <NuxtLink
       p2 rounded
