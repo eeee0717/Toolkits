@@ -10,7 +10,7 @@ const auto = ref(true)
 const regStr = ref('')
 const regFlag = ref<string[]>([])
 const reg = ref<RegExp | null>(null)
-const regPresetTemp = ref<NamedRegExp | null>()
+const regPresetTemp = ref<NamedRegExp>({ label: '', value: '' })
 
 watchEffect(() => {
   try {
@@ -37,7 +37,6 @@ watchEffect(() => {
 
 watchEffect(() => {
   regStr.value = regPresetTemp.value?.value || ''
-  regPresetTemp.value = null
 })
 
 // 要匹配的字符串
@@ -118,7 +117,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
             <span>筛选修饰符</span>
           </template>
         </USelectMenu>
-        <USelectMenu v-model="regPresetTemp!" placeholder="常用正则表达式" :options="regPresetsList" />
+        <USelectMenu v-model="regPresetTemp.value" placeholder="常用正则表达式" :options="regPresetsList" />
       </div>
       <!-- 要匹配的字符串 -->
       <div class="flex mt-20px ">
