@@ -2,6 +2,6 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu({
   rules: {
-    'node/prefer-global/process': 'never',
+    'node/prefer-global/process': 'warn',
   },
 })

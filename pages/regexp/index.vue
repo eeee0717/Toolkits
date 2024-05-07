@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Joi from 'joi'
 import { regPresetsList } from '~/utils/regexp'
-import {regPrompt} from '~/utils/system-prompts'
+import { regPrompt } from '~/utils/system-prompts'
 import type { FormSubmitEvent } from '#ui/types'
 
 // 是否开启AI匹配
@@ -10,7 +10,7 @@ const auto = ref(true)
 const regStr = ref('')
 const regFlag = ref<string[]>([])
 const reg = ref<RegExp | null>(null)
-const regPresetTemp = ref({value:'', label:''})
+const regPresetTemp = ref({ value: '', label: '' })
 const regPromptStorage = useLocalStorage('regPrompt', regPrompt)
 
 watchEffect(() => {
@@ -75,15 +75,14 @@ const state = reactive({
 const response = ref<string>('')
 async function onSubmit(event: FormSubmitEvent<any>) {
   matchStr.value = event.data.docText
-  response.value = "请等待···"
+  response.value = '请等待···'
   const content = `匹配原文：${event.data.docText}\n匹配内容:${event.data.content}`
-  const str = await AIchat(regPrompt,content)
-  if(str===null)
-  {
+  const str = await AIchat(regPrompt, content)
+  if (str === null) {
     response.value = '请重新查看'
-    return;
+    return
   }
-  response.value = str!.replace(/`/g,"")
+  response.value = str!.replace(/`/g, '')
   regStr.value = response.value
 }
 </script>
@@ -112,9 +111,8 @@ async function onSubmit(event: FormSubmitEvent<any>) {
           </template>
         </UInput>
 
-        <USelectMenu v-model="regTempFlag" class="flex" :options="regFlagList" multiple icon="i-carbon-filter" placeholder='筛选修饰符'>
-        </USelectMenu>
-        <USelectMenu class="flex"v-model="regPresetTemp" placeholder="常用正则表达式" :options="regPresetsList" />
+        <USelectMenu v-model="regTempFlag" class="flex" :options="regFlagList" multiple icon="i-carbon-filter" placeholder="筛选修饰符" />
+        <USelectMenu v-model="regPresetTemp" class="flex" placeholder="常用正则表达式" :options="regPresetsList" />
       </div>
       <!-- 要匹配的字符串 -->
       <div class="flex mt-20px ">
@@ -140,8 +138,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
       <div class="max-w-100 grid grid-auto-flow-row">
         <div>
           <label>系统提示词</label>
-          <UTextarea :rows="12"  v-model="regPromptStorage" resize/>
- 
+          <UTextarea v-model="regPromptStorage" :rows="12" resize />
         </div>
         <UForm class="min-w-80 space-y-3" :schema="scheme" :state="state" @submit="onSubmit">
           <UFormGroup label="要匹配的原文" name="docText">
@@ -156,8 +153,8 @@ async function onSubmit(event: FormSubmitEvent<any>) {
         </UForm>
         <div class=" m-t-2">
           <label>AI匹配结果</label>
-          <div class="b border-base border-rounded-1.5 min-h-20 p-2" >
-            <span text-lg>{{response  }}</span>
+          <div class="b border-base border-rounded-1.5 min-h-20 p-2">
+            <span text-lg>{{ response }}</span>
           </div>
         </div>
       </div>

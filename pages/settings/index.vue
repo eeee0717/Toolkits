@@ -1,19 +1,16 @@
 <script setup lang="ts">
-
-
 const isOpenaiKeyShow = ref(false)
 const openaiKey = useLocalStorage('openaiKey', '')
 const openaiBaseUrl = useLocalStorage('openaiBaseUrl', 'https://api.openai.com/v1')
 const selectedModel = useLocalStorage('selectedModel', '')
-const modelList= useLocalStorage('modelList', [] as string[])
+const modelList = useLocalStorage('modelList', [] as string[])
 
 async function clickTest() {
-  console.log('clicked')
-  if(modelList.value.length > 0){
+  // console.log('clicked')
+  if (modelList.value.length > 0)
     return
-  }
-  modelList.value = await GetModelList()
 
+  modelList.value = await GetModelList()
 }
 </script>
 
@@ -26,50 +23,46 @@ async function clickTest() {
       <div class="grid-col2-base flex items-center justify-center">
         <label class="flex">OpenAI Key</label>
         <ClientOnly>
-        <UInput
-            class="flex "
+          <UInput
             v-model="openaiKey"
+            class="flex "
             :type="`${isOpenaiKeyShow ? 'text' : 'password'}`"
             placeholder="请输入您的密钥"
             :ui="{ icon: { trailing: { pointer: '' } } }"
-        >
-          <template #trailing>
-            <UButton
-              v-show="openaiKey !== ''"
-              color="gray"
-              variant="link"
-              :icon="`${isOpenaiKeyShow ? 'i-heroicons-eye-slash-16-solid' : 'i-heroicons-eye-16-solid'}`"
-              :padded="false"
-              @click="isOpenaiKeyShow = !isOpenaiKeyShow"
-            />
-          </template>
-        </UInput>
-        </ClientOnly> 
+          >
+            <template #trailing>
+              <UButton
+                v-show="openaiKey !== ''"
+                color="gray"
+                variant="link"
+                :icon="`${isOpenaiKeyShow ? 'i-heroicons-eye-slash-16-solid' : 'i-heroicons-eye-16-solid'}`"
+                :padded="false"
+                @click="isOpenaiKeyShow = !isOpenaiKeyShow"
+              />
+            </template>
+          </UInput>
+        </ClientOnly>
       </div>
       <div class="grid-col2-base flex items-center justify-center">
         <label class="flex">OpenAI Base Url</label>
         <ClientOnly>
-
-        <UInput
-            class="flex "
+          <UInput
             v-model="openaiBaseUrl"
+            class="flex "
             type="text"
             placeholder="请输入您的密钥"
-        >
-        </UInput>
+          />
         </ClientOnly>
       </div>
       <div class="grid-col2-base flex items-center justify-center">
         <label>模型选择</label>
         <ClientOnly>
-          <USelect class="flex max-w-60" v-model="selectedModel" :options="modelList"/>
+          <USelect v-model="selectedModel" class="flex max-w-60" :options="modelList" />
         </ClientOnly>
-        
       </div>
-      <div class="flex" >
-        <UButton variant="outline" label="验证" @click="clickTest"/>
+      <div class="flex">
+        <UButton variant="outline" label="验证" @click="clickTest" />
       </div>
     </div>
-
   </div>
 </template>
