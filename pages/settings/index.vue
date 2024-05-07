@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+
 const isOpenaiKeyShow = ref(false)
 const openaiKey = useLocalStorage('openaiKey', '')
 const openaiBaseUrl = useLocalStorage('openaiBaseUrl', 'https://api.openai.com/v1')
@@ -14,8 +15,9 @@ const openaiBaseUrl = useLocalStorage('openaiBaseUrl', 'https://api.openai.com/v
     </div>
     <div class="grid-col2-base">
       <div class="grid-col2-base flex items-center justify-center">
-        <p>OpenAI Base Url</p>
+        <p>OpenAI Key</p>
         <UInput
+            class="flex min-w-50"
             v-model="openaiKey"
             :type="`${isOpenaiKeyShow ? 'text' : 'password'}`"
             placeholder="请输入您的密钥"
@@ -31,6 +33,16 @@ const openaiBaseUrl = useLocalStorage('openaiBaseUrl', 'https://api.openai.com/v
               @click="isOpenaiKeyShow = !isOpenaiKeyShow"
             />
           </template>
+        </UInput>
+      </div>
+      <div class="grid-col2-base flex items-center justify-center">
+        <p>OpenAI Base Url</p>
+        <UInput
+            class="flex min-w-50"
+            v-model="openaiBaseUrl"
+            type="text"
+            placeholder="请输入您的密钥"
+        >
         </UInput>
       </div>
     </div>
