@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Joi from 'joi'
-import type { NamedRegExp } from '~/utils/regexp'
 import { regPresetsList } from '~/utils/regexp'
 import type { FormSubmitEvent } from '#ui/types'
 
@@ -37,7 +36,6 @@ watchEffect(() => {
 
 watchEffect(() => {
   regStr.value = regPresetTemp.value.value || ''
-  console.log(regPresetTemp.value)
 })
 
 // 要匹配的字符串
@@ -89,7 +87,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 </script>
 
 <template>
-  <div class="w-full p-20px box-border grid grid-cols-2 ">
+  <div class="w-full p-5 box-border grid-col2-base ">
     <!-- 正则表达式匹配区域 -->
     <div>
       <!-- 输入正则表达式 -->
@@ -112,13 +110,9 @@ async function onSubmit(event: FormSubmitEvent<any>) {
           </template>
         </UInput>
 
-        <USelectMenu v-model="regTempFlag" class="w-35" :options="regFlagList" multiple>
-          <template #label>
-            <UIcon name="i-carbon-filter" dynamic />
-            <span>筛选修饰符</span>
-          </template>
+        <USelectMenu v-model="regTempFlag" class="flex" :options="regFlagList" multiple icon="i-carbon-filter" placeholder='筛选修饰符'>
         </USelectMenu>
-        <USelectMenu v-model="regPresetTemp" placeholder="常用正则表达式" :options="regPresetsList" />
+        <USelectMenu class="flex"v-model="regPresetTemp" placeholder="常用正则表达式" :options="regPresetsList" />
       </div>
       <!-- 要匹配的字符串 -->
       <div class="flex mt-20px ">
