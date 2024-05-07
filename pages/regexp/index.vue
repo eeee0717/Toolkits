@@ -82,7 +82,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
     response.value = '请重新查看'
     return
   }
-  response.value = str!.replace(/`/g, '')
+  response.value = str!.trim()
   regStr.value = response.value
 }
 </script>
