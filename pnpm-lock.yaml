@@ -11,12 +11,18 @@ importers:
       '@chenfengyuan/vue-qrcode':
         specifier: '2'
         version: 2.0.0(qrcode@1.5.3)(vue@3.4.26(typescript@4.9.4))
+      '@highlightjs/vue-plugin':
+        specifier: ^2.1.0
+        version: 2.1.0(highlight.js@11.9.0)(vue@3.4.26(typescript@4.9.4))
       '@pinia/nuxt':
         specifier: ^0.5.1
         version: 0.5.1(rollup@4.17.2)(typescript@4.9.4)(vue@3.4.26(typescript@4.9.4))
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
+      highlight.js:
+        specifier: ^11.9.0
+        version: 11.9.0
       joi:
         specifier: ^17.13.1
         version: 17.13.1
@@ -564,6 +570,12 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       vue: ^3.2.0
+
+  '@highlightjs/vue-plugin@2.1.0':
+    resolution: {integrity: sha512-E+bmk4ncca+hBEYRV2a+1aIzIV0VSY/e5ArjpuSN9IO7wBJrzUE2u4ESCwrbQD7sAy+jWQjkV5qCCWgc+pu7CQ==}
+    peerDependencies:
+      highlight.js: ^11.0.1
+      vue: ^3
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -3058,6 +3070,10 @@ packages:
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
+
+  highlight.js@11.9.0:
+    resolution: {integrity: sha512-fJ7cW7fQGCYAkgv4CPfwFHrfd/cLS4Hau96JuJ+ZTOWhjnhoeN1ub1tFmALm/+lW5z4WCAuAV9bm05AP0mS6Gw==}
+    engines: {node: '>=12.0.0'}
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
@@ -5950,6 +5966,11 @@ snapshots:
   '@headlessui/vue@1.7.21(vue@3.4.26(typescript@4.9.4))':
     dependencies:
       '@tanstack/vue-virtual': 3.5.0(vue@3.4.26(typescript@4.9.4))
+      vue: 3.4.26(typescript@4.9.4)
+
+  '@highlightjs/vue-plugin@2.1.0(highlight.js@11.9.0)(vue@3.4.26(typescript@4.9.4))':
+    dependencies:
+      highlight.js: 11.9.0
       vue: 3.4.26(typescript@4.9.4)
 
   '@humanwhocodes/config-array@0.11.14':
@@ -9188,6 +9209,8 @@ snapshots:
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
+
+  highlight.js@11.9.0: {}
 
   hookable@5.5.3: {}
 

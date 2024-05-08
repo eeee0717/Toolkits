@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { InputData, jsonInputForTargetLanguage, quicktype } from 'quicktype-core'
 
-const jsonString = `{
-  "name": "张三",
-  "age": 18
-}`
-
+const jsonData = ref<string>('')
 async function quicktypeJSON(targetLanguage: string, typeName: string, jsonString: string) {
   const jsonInput = jsonInputForTargetLanguage(targetLanguage)
   await jsonInput.addSource({
@@ -20,16 +16,23 @@ async function quicktypeJSON(targetLanguage: string, typeName: string, jsonStrin
     lang: targetLanguage,
   })
 }
-async function onClick() {
-  const { lines: csharpData } = await quicktypeJSON('csharp', 'Data', jsonString)
-  console.log('csharpData', csharpData)
+const objectData = ref('')
+async function convertClick() {
+  const { lines: result } = await quicktypeJSON('csharp', 'Data', jsonData.value)
+  objectData.value = result.join('\n')
 }
 </script>
 
 <template>
-  <div>
-    <UButton @click="onClick">
+  <div
+    class="w-full p-4 flex flex-col justify-start items-center space-y-4"
+  >
+    <UButton variant="outline" @click="convertClick">
       Convert to Entity
     </UButton>
+    <div class="w-full grid-col2-base">
+      <UTextarea v-model="jsonData" placeholder="请将Json数据复制在这里" :rows="40" autoresize class=" w-full whitespace-pre-wrap" />
+      <UTextarea v-model="objectData" :rows="40" autoresize class=" w-full whitespace-pre-wrap" />
+    </div>
   </div>
 </template>

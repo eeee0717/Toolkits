@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port 8000",
+    "dev": "nuxt dev --port 3030",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "2",
+    "@highlightjs/vue-plugin": "^2.1.0",
     "@pinia/nuxt": "^0.5.1",
     "dotenv": "^16.4.5",
+    "highlight.js": "^11.9.0",
     "joi": "^17.13.1",
     "openai": "^4.41.0",
     "pinia": "^2.1.7",
