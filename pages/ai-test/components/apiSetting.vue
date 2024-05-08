@@ -1,35 +1,53 @@
 <script setup lang="ts">
-const inputName = ref('')
-const inputApiUrl = ref('')
-const inputApiKey = ref('')
-const models = ref<string[]>([])
-const selectedModel = ref('')
-async function save() {
-  // useLocalStorage(inputName.value, inputName.value)
-  // useLocalStorage(`${inputName.value}ApiUrl`, inputApiUrl.value)
-  // useLocalStorage(`${inputName.value}ApiKey`, inputApiKey.value)
-  const ai = new AI(inputApiUrl.value, inputApiKey.value)
-  models.value = await ai.getModels()
+interface AIService {
+  name: string
+  apiUrl: string
+  apiKey: string
+  selectedModel: string
+  models: string[]
+  checked: boolean
+}
+const aiServices = ref<AIService[]>([{
+  name: '',
+  apiUrl: '',
+  apiKey: '',
+  selectedModel: '',
+  models: [],
+  checked: false,
+}])
+
+async function save(aiService: AIService) {
+  const ai = new AI(aiService.apiUrl, aiService.apiKey)
+  const models = await ai.getModels()
+  aiService.models = models
+  aiService.checked = true
+  aiServices.value.push(aiService)
+  useLocalStorage('aiServices', aiServices.value)
+  console.log(models)
 }
 </script>
 
 <template>
-  <div class="w-full grid grid-cols-5 gap-5 flex items-center justify-center">
-    <div class="flex items-center justify-center grid grid-cols-[1fr_2fr] gap-5">
-      <label>Name</label>
-      <UInput v-model="inputName" class="w-50" placeholder="OpenAI" type="text" />
-    </div>
-    <div class="flex items-center justify-center grid grid-cols-[1fr_2fr] gap-5">
-      <label>Api Url</label>
-      <UInput v-model="inputApiUrl" class="w-50" placeholder="https://api.openai.com/v1" type="text" />
-    </div>
-    <div class="flex items-center justify-center grid grid-cols-[1fr_2fr] gap-5">
-      <label>Api Key</label>
-      <UInput v-model="inputApiKey" class="w-50" placeholder="sk-xxxxx" type="text" />
-    </div>
-    <USelect v-model="selectedModel" class="w-30" :options="models" />
-    <UButton class="w-30 flex items-center justify-center" variant="outline" @click="save">
-      Save
-    </UButton>
-  </div>
+  <ul>
+    <li v-for="aiService, idx in aiServices" :key="idx">
+      <div class="w-full grid grid-cols-5 gap-5 flex items-center justify-center">
+        <div class="flex items-center justify-center grid grid-cols-[1fr_2fr] gap-5">
+          <label>Name</label>
+          <UInput v-model="aiService.name" class="w-50" placeholder="OpenAI" type="text" />
+        </div>
+        <div class="flex items-center justify-center grid grid-cols-[1fr_2fr] gap-5">
+          <label>Api Url</label>
+          <UInput v-model="aiService.apiUrl" class="w-50" placeholder="https://api.openai.com/v1" type="text" />
+        </div>
+        <div class="flex items-center justify-center grid grid-cols-[1fr_2fr] gap-5">
+          <label>Api Key</label>
+          <UInput v-model="aiService.apiKey" class="w-50" placeholder="sk-xxxxx" type="text" />
+        </div>
+        <USelect v-model="aiService.selectedModel" class="w-30" :options="aiService.models" />
+        <UButton class="w-30 flex items-center justify-center" variant="outline" @click="save(aiService)">
+          Save
+        </UButton>
+      </div>
+    </li>
+  </ul>
 </template>

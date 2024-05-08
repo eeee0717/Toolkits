@@ -5,6 +5,5 @@ import apiSetting from './components/apiSetting.vue'
 <template>
   <div class=" space-y-3">
     <apiSetting />
-    <apiSetting />
   </div>
 </template>
