@@ -11,4 +11,9 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
+  vite: {
+    define: {
+      global: 'window',
+    },
+  },
 })

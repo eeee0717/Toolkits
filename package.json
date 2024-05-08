@@ -18,7 +18,9 @@
     "joi": "^17.13.1",
     "openai": "^4.41.0",
     "pinia": "^2.1.7",
-    "qrcode": "1"
+    "qrcode": "1",
+    "quicktype": "^23.0.158",
+    "quicktype-core": "^23.0.158"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.2.1",
