@@ -1,9 +1,10 @@
 <script setup lang="ts">
-
+import apiSetting from './components/apiSetting.vue'
 </script>
 
 <template>
-  <div>
-    This is AI Test
+  <div class=" space-y-3">
+    <apiSetting />
+    <apiSetting />
   </div>
 </template>
