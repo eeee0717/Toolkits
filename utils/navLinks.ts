@@ -14,4 +14,8 @@ export const navLinks = [{
   label: '二维码生成',
   icon: 'i-heroicons-qr-code',
   to: '/qrcode',
+}, {
+  label: 'AI测试',
+  icon: 'i-heroicons-cube-transparent-solid',
+  to: '/ai-test',
 }]
