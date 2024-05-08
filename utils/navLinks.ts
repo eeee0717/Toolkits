@@ -10,4 +10,8 @@ export const navLinks = [{
   label: 'Json转实体类',
   icon: 'i-heroicons-sparkles',
   to: '/convert-to-entity',
+}, {
+  label: '二维码生成',
+  icon: 'i-heroicons-qr-code',
+  to: '/qrcode',
 }]
