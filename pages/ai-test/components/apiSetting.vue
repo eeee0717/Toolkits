@@ -21,14 +21,27 @@ async function save(aiService: AIService) {
   const models = await ai.getModels()
   aiService.models = models
   aiService.checked = true
-  aiServices.value.push(aiService)
+  aiServices.value.push({ ...{
+    name: '',
+    apiUrl: '',
+    apiKey: '',
+    selectedModel: '',
+    models: [],
+    checked: false,
+  } })
   useLocalStorage('aiServices', aiServices.value)
-  console.log(models)
 }
+
+onMounted(() => {
+  const aiServicesFromLocalStorage = useLocalStorage('aiServices', [])
+  if (aiServicesFromLocalStorage.value.length === 0)
+    return
+  aiServices.value = aiServicesFromLocalStorage.value
+})
 </script>
 
 <template>
-  <ul>
+  <ul class="space-y-3">
     <li v-for="aiService, idx in aiServices" :key="idx">
       <div class="w-full grid grid-cols-5 gap-5 flex items-center justify-center">
         <div class="flex items-center justify-center grid grid-cols-[1fr_2fr] gap-5">
@@ -45,7 +58,7 @@ async function save(aiService: AIService) {
         </div>
         <USelect v-model="aiService.selectedModel" class="w-30" :options="aiService.models" />
         <UButton class="w-30 flex items-center justify-center" variant="outline" @click="save(aiService)">
-          Save
+          {{ aiService.checked ? 'Saved' : 'Save' }}
         </UButton>
       </div>
     </li>
