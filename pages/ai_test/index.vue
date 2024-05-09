@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import apiSetting from './components/apiSetting.vue'
+import apiSetting from '../../components/apiSetting.vue'
 
 const isOpen = ref(false)
 </script>

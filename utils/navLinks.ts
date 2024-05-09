@@ -15,6 +15,10 @@ export const navLinks = [{
   icon: 'i-heroicons-qr-code',
   to: '/qrcode',
 }, {
+  label: '录音转文字',
+  icon: 'i-tdesign-translate',
+  to: '/audio_2_text',
+}, {
   label: 'AI测试',
   icon: 'i-heroicons-cube-transparent-solid',
   to: '/ai-test',

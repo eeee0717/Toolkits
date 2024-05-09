@@ -22,7 +22,8 @@
     "pinia": "^2.1.7",
     "qrcode": "1",
     "quicktype": "^23.0.158",
-    "quicktype-core": "^23.0.158"
+    "quicktype-core": "^23.0.158",
+    "tencentcloud-sdk-nodejs-common": "^4.0.849"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.2.1",
