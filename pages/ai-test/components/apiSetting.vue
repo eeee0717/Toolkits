@@ -57,8 +57,8 @@ onMounted(() => {
           <UInput v-model="aiService.apiKey" class="w-50" placeholder="sk-xxxxx" type="text" />
         </div>
         <USelect v-model="aiService.selectedModel" class="w-30" :options="aiService.models" />
-        <UButton class="w-30 flex items-center justify-center" variant="outline" @click="save(aiService)">
-          {{ aiService.checked ? 'Saved' : 'Save' }}
+        <UButton class="w-20 flex items-center justify-center" variant="outline" :color="aiService.checked ? 'primary' : 'red'" @click="save(aiService)">
+          {{ aiService.checked ? '验证通过' : '等待验证' }}
         </UButton>
       </div>
     </li>
