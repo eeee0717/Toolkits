@@ -23,6 +23,7 @@
     "qrcode": "1",
     "quicktype": "^23.0.158",
     "quicktype-core": "^23.0.158",
+    "tencentcloud-sdk-nodejs": "^4.0.849",
     "tencentcloud-sdk-nodejs-common": "^4.0.849"
   },
   "devDependencies": {

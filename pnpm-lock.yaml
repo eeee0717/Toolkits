@@ -41,6 +41,9 @@ importers:
       quicktype-core:
         specifier: ^23.0.158
         version: 23.0.158(encoding@0.1.13)
+      tencentcloud-sdk-nodejs:
+        specifier: ^4.0.849
+        version: 4.0.849(encoding@0.1.13)
       tencentcloud-sdk-nodejs-common:
         specifier: ^4.0.849
         version: 4.0.849(encoding@0.1.13)
@@ -4872,6 +4875,10 @@ packages:
 
   tencentcloud-sdk-nodejs-common@4.0.849:
     resolution: {integrity: sha512-kcEdFna8ai1QTb1HLMDlArR2WvB9llQHBHcHEIKY/VE9y1fIQvIpWSCkU/ISaL8q6UHJUCk+mpALEIYxVX06wA==}
+    engines: {node: '>=10'}
+
+  tencentcloud-sdk-nodejs@4.0.849:
+    resolution: {integrity: sha512-8X0YE2l/ngrwdVSv5Ysb2ij+JcdbAxEuN565YIt3AOblKGmNoIJ9RqNm7OM6UyZie+oAoPZJpCz5ZDXyLRAdzw==}
     engines: {node: '>=10'}
 
   terser-webpack-plugin@5.3.10:
@@ -11322,6 +11329,20 @@ snapshots:
       yallist: 4.0.0
 
   tencentcloud-sdk-nodejs-common@4.0.849(encoding@0.1.13):
+    dependencies:
+      form-data: 3.0.1
+      get-stream: 6.0.1
+      https-proxy-agent: 5.0.1
+      is-stream: 2.0.1
+      json-bigint: 1.0.0
+      node-fetch: 2.7.0(encoding@0.1.13)
+      tslib: 1.13.0
+      uuid: 9.0.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+
+  tencentcloud-sdk-nodejs@4.0.849(encoding@0.1.13):
     dependencies:
       form-data: 3.0.1
       get-stream: 6.0.1
