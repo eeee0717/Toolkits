@@ -3,6 +3,7 @@ import Joi from 'joi'
 import { regPresetsList } from '~/utils/regexp'
 import { regPrompt } from '~/utils/system-prompts'
 import type { FormSubmitEvent } from '#ui/types'
+import type { AIService } from '~/utils/AI'
 
 // 是否开启AI匹配
 const auto = ref(true)
@@ -12,7 +13,9 @@ const regFlag = ref<string[]>([])
 const reg = ref<RegExp | null>(null)
 const regPresetTemp = ref({ value: '', label: '' })
 const regPromptStorage = useLocalStorage('regPrompt', regPrompt)
-
+const aiServices = useLocalStorage('aiServices', [])
+const models = ref<string[]>([])
+const selectedModel = ref<string>('')
 watchEffect(() => {
   try {
     reg.value = regStr.value ? new RegExp(regStr.value, regFlag.value.join('')) : null
@@ -74,17 +77,27 @@ const state = reactive({
 })
 const response = ref<string>('')
 async function onSubmit(event: FormSubmitEvent<any>) {
+  if (!selectedModel.value) {
+    response.value = '请选择模型'
+    return
+  }
   matchStr.value = event.data.docText
   response.value = '请等待···'
   const content = `匹配原文：${event.data.docText}\n匹配内容:${event.data.content}`
-  const str = await AIchat(regPrompt, content)
-  if (str === null) {
-    response.value = '请重新查看'
-    return
-  }
+  const aiService: AIService | undefined = aiServices.value.find((item: AIService) => item.models.includes(selectedModel.value))
+  const apiUrl = aiService!.apiUrl
+  const apiKey = aiService!.apiKey
+  const ai = new AI(apiUrl, apiKey)
+  const str = await ai.getCompletions(selectedModel.value, regPrompt, content)
   response.value = str!.trim().replaceAll('`', '')
   regStr.value = response.value
 }
+
+onMounted(() => {
+  const services = aiServices.value.map((item: AIService) => item.models)
+  // 排除重复的模型
+  models.value = Array.from(new Set(services.flat()))
+})
 </script>
 
 <template>
@@ -146,6 +159,9 @@ async function onSubmit(event: FormSubmitEvent<any>) {
           </UFormGroup>
           <UFormGroup label="要匹配的内容" name="content">
             <UInput v-model="state.content" />
+          </UFormGroup>
+          <UFormGroup label="选择模型" name="model">
+            <USelect v-model="selectedModel" :options="models" />
           </UFormGroup>
           <UButton type="submit">
             AI匹配正则表达式
