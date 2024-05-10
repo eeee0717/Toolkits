@@ -14,9 +14,21 @@ const audioUrl = ref<string>('')
 const secretId = useLocalStorage('secretId', '')
 const secretKey = useLocalStorage('secretKey', '')
 
-function onSubmit(key: string) {
-  if (key === 'CreateRecTask')
-    createRecTask(secretId.value, secretKey.value, engineModelType.value, audioUrl.value)
+async function onSubmit(key: string) {
+  if (key === 'CreateRecTask') {
+    const response = await $fetch('/api/createRecTask', {
+      method: 'POST',
+      body: JSON.stringify({
+        secretId: secretId.value,
+        secretKey: secretKey.value,
+        engineModelType: engineModelType.value,
+        audioUrl: audioUrl.value,
+      }),
+    })
+    console.log(response)
+  }
+  // if (key === 'CreateRecTask')
+  //   createRecTask(secretId.value, secretKey.value, engineModelType.value, audioUrl.value)
 
   // else if (key === 'DescribeTaskStatus')
   //   console.log('DescribeTaskStatus')
