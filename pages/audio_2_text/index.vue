@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { saveAs } from 'file-saver'
+
 const items = [{
   key: 'CreateRecTask',
   label: '录音文字识别请求',
@@ -14,10 +16,9 @@ const audioName = useLocalStorage('audioName', '')
 const audioUrl = useLocalStorage('audioUrl', '')
 const secretId = useLocalStorage('secretId', '')
 const secretKey = useLocalStorage('secretKey', '')
-const taskId = useLocalStorage('taskId', '')
-const taskStatus = useLocalStorage('taskStatus', '')
-const taskResult = useLocalStorage('taskResult', '')
-const taskList = useLocalStorage<{ name: string, taskId: string }[]>('taskList', [])
+const taskId = ref<string>('')
+const taskStatus = ref<string>('')
+const taskResult = ref<string>('')
 async function onSubmit(key: string) {
   if (key === 'CreateRecTask') {
     await $fetch('/api/createRecTask', {
@@ -34,10 +35,6 @@ async function onSubmit(key: string) {
         return
       }
       taskId.value = (res as { RequestId: string, TaskId: string }).TaskId
-      taskList.value.push({
-        name: audioName.value,
-        taskId: taskId.value,
-      })
     })
   }
   else if (key === 'DescribeTaskStatus') {
@@ -58,6 +55,11 @@ async function onSubmit(key: string) {
       taskResult.value = response.Result
     })
   }
+}
+
+async function saveToTxt() {
+  const blob = new Blob([taskResult.value], { type: 'text/plain;charset=utf-8' })
+  saveAs(blob, `${audioName.value}.txt`)
 }
 </script>
 
@@ -114,9 +116,12 @@ async function onSubmit(key: string) {
             </UFormGroup>
           </div>
           <template #footer>
-            <div class=" flex items-center justify-center">
+            <div class=" flex items-center justify-center space-x-5">
               <UButton type="submit" variant="outline">
                 {{ item.key === 'CreateRecTask' ? '创建请求' : '查询结果' }}
+              </UButton>
+              <UButton v-show="item.key === 'DescribeTaskStatus'" type="save" variant="outline" @click.prevent="saveToTxt">
+                保存到txt
               </UButton>
             </div>
           </template>
