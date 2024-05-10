@@ -10,13 +10,16 @@ const items = [{
 }]
 
 const engineModelType = ref<string>('16k_zh')
-const audioUrl = ref<string>('')
+const audioName = useLocalStorage('audioName', '')
+const audioUrl = useLocalStorage('audioUrl', '')
 const secretId = useLocalStorage('secretId', '')
 const secretKey = useLocalStorage('secretKey', '')
+const taskId = useLocalStorage('taskId', '')
 
+const taskList = useLocalStorage<{ name: string, taskId: string }[]>('taskList', [])
 async function onSubmit(key: string) {
   if (key === 'CreateRecTask') {
-    const response = await $fetch('/api/createRecTask', {
+    await $fetch('/api/createRecTask', {
       method: 'POST',
       body: JSON.stringify({
         secretId: secretId.value,
@@ -24,16 +27,18 @@ async function onSubmit(key: string) {
         engineModelType: engineModelType.value,
         audioUrl: audioUrl.value,
       }),
+    }).then((res) => {
+      if (res === undefined) {
+        taskId.value = '请求失败'
+        return
+      }
+      taskId.value = (res as { RequestId: string, TaskId: string }).TaskId
+      taskList.value.push({
+        name: audioName.value,
+        taskId: taskId.value,
+      })
     })
-    console.log(response)
   }
-  // if (key === 'CreateRecTask')
-  //   createRecTask(secretId.value, secretKey.value, engineModelType.value, audioUrl.value)
-
-  // else if (key === 'DescribeTaskStatus')
-  //   console.log('DescribeTaskStatus')
-
-  // else console.log('Unknown key')
 }
 </script>
 
@@ -68,8 +73,14 @@ async function onSubmit(key: string) {
               </template>
               <UInput v-model="engineModelType" placeholder="16k_zh, 16k_en..." />
             </UFormGroup>
+            <UFormGroup label="Name">
+              <UInput v-model="audioName" />
+            </UFormGroup>
             <UFormGroup label="音频Url">
               <UInput v-model="audioUrl" />
+            </UFormGroup>
+            <UFormGroup label="请求查询ID">
+              <UInput v-model="taskId" />
             </UFormGroup>
           </div>
           <template #footer>
