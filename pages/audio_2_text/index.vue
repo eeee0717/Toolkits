@@ -15,7 +15,8 @@ const audioUrl = useLocalStorage('audioUrl', '')
 const secretId = useLocalStorage('secretId', '')
 const secretKey = useLocalStorage('secretKey', '')
 const taskId = useLocalStorage('taskId', '')
-
+const taskStatus = useLocalStorage('taskStatus', '')
+const taskResult = useLocalStorage('taskResult', '')
 const taskList = useLocalStorage<{ name: string, taskId: string }[]>('taskList', [])
 async function onSubmit(key: string) {
   if (key === 'CreateRecTask') {
@@ -37,6 +38,24 @@ async function onSubmit(key: string) {
         name: audioName.value,
         taskId: taskId.value,
       })
+    })
+  }
+  else if (key === 'DescribeTaskStatus') {
+    await $fetch('/api/describeTaskStatus', {
+      method: 'POST',
+      body: JSON.stringify({
+        secretId: secretId.value,
+        secretKey: secretKey.value,
+        taskId: taskId.value,
+      }),
+    }).then((res) => {
+      if (res === undefined) {
+        taskId.value = '请求失败'
+        return
+      }
+      const response = res as { TaskId: string, Status: string, Result: string }
+      taskStatus.value = response.Status
+      taskResult.value = response.Result
     })
   }
 }
@@ -81,6 +100,17 @@ async function onSubmit(key: string) {
             </UFormGroup>
             <UFormGroup label="请求查询ID">
               <UInput v-model="taskId" />
+            </UFormGroup>
+          </div>
+          <div v-if="item.key === 'DescribeTaskStatus'" class="space-y-3">
+            <UFormGroup label="请求查询ID">
+              <UInput v-model="taskId" />
+            </UFormGroup>
+            <UFormGroup label="查询状态">
+              <UInput v-model="taskStatus" enabled />
+            </UFormGroup>
+            <UFormGroup label="查询结果">
+              <UTextarea v-model="taskResult" autoresize />
             </UFormGroup>
           </div>
           <template #footer>
