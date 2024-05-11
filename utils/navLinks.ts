@@ -19,6 +19,10 @@ export const navLinks = [{
   icon: 'i-heroicons-microphone',
   to: '/audio_2_text',
 }, {
+  label: 'SQL生成器',
+  icon: 'i-heroicons-circle-stack',
+  to: '/sql-generate',
+}, {
   label: 'AI测试',
   icon: 'i-heroicons-cube-transparent-solid',
   to: '/ai_test',
