@@ -9,11 +9,14 @@ importers:
   .:
     dependencies:
       '@chenfengyuan/vue-qrcode':
-        specifier: '2'
+        specifier: ^2.0.0
         version: 2.0.0(qrcode@1.5.3)(vue@3.4.26(typescript@4.9.4))
       '@highlightjs/vue-plugin':
         specifier: ^2.1.0
         version: 2.1.0(highlight.js@11.9.0)(vue@3.4.26(typescript@4.9.4))
+      '@nuxt/ui-pro':
+        specifier: ^1.2.0
+        version: 1.2.0(focus-trap@7.5.4)(nuxt@3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@16.18.97)(@unocss/reset@0.59.4)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.17.2))(vue@3.4.26(typescript@4.9.4)))(fuse.js@6.6.2)(ioredis@5.4.1)(optionator@0.9.4)(qrcode@1.5.3)(rollup@4.17.2)(terser@5.31.0)(typescript@4.9.4)(unocss@0.59.4(@unocss/webpack@0.57.7(rollup@4.17.2)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(qrcode@1.5.3)(rollup@4.17.2)(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0))(vue@3.4.26(typescript@4.9.4))
       '@pinia/nuxt':
         specifier: ^0.5.1
         version: 0.5.1(rollup@4.17.2)(typescript@4.9.4)(vue@3.4.26(typescript@4.9.4))
@@ -29,6 +32,9 @@ importers:
       joi:
         specifier: ^17.13.1
         version: 17.13.1
+      nuxt-highlightjs:
+        specifier: ^1.0.3
+        version: 1.0.3
       openai:
         specifier: ^4.41.0
         version: 4.41.0(encoding@0.1.13)
@@ -36,7 +42,7 @@ importers:
         specifier: ^2.1.7
         version: 2.1.7(typescript@4.9.4)(vue@3.4.26(typescript@4.9.4))
       qrcode:
-        specifier: '1'
+        specifier: ^1.5.3
         version: 1.5.3
       quicktype:
         specifier: ^23.0.158
@@ -52,13 +58,13 @@ importers:
         version: 4.0.849(encoding@0.1.13)
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^2.2.1
+        specifier: ^2.16.1
         version: 2.16.1(@vue/compiler-sfc@3.4.26)(eslint@8.57.0)(typescript@4.9.4)
       '@iconify-json/logos':
-        specifier: ^1.1.40
+        specifier: ^1.1.42
         version: 1.1.42
       '@iconify/json':
-        specifier: ^2.2.151
+        specifier: ^2.2.206
         version: 2.2.206
       '@nuxt/devtools':
         specifier: latest
@@ -67,7 +73,7 @@ importers:
         specifier: ^2.15.2
         version: 2.15.2(focus-trap@7.5.4)(nuxt@3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@16.18.97)(@unocss/reset@0.59.4)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.17.2))(vue@3.4.26(typescript@4.9.4)))(fuse.js@6.6.2)(ioredis@5.4.1)(optionator@0.9.4)(qrcode@1.5.3)(rollup@4.17.2)(terser@5.31.0)(typescript@4.9.4)(unocss@0.59.4(@unocss/webpack@0.57.7(rollup@4.17.2)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(qrcode@1.5.3)(rollup@4.17.2)(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0))(vue@3.4.26(typescript@4.9.4))
       '@nuxtjs/color-mode':
-        specifier: ^3.3.2
+        specifier: ^3.4.1
         version: 3.4.1(rollup@4.17.2)
       '@types/file-saver':
         specifier: ^2.0.7
@@ -82,19 +88,19 @@ importers:
         specifier: ^0.59.4
         version: 0.59.4
       '@vueuse/nuxt':
-        specifier: ^10.6.1
+        specifier: ^10.9.0
         version: 10.9.0(nuxt@3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@16.18.97)(@unocss/reset@0.59.4)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.17.2))(vue@3.4.26(typescript@4.9.4)))(fuse.js@6.6.2)(ioredis@5.4.1)(optionator@0.9.4)(qrcode@1.5.3)(rollup@4.17.2)(terser@5.31.0)(typescript@4.9.4)(unocss@0.59.4(@unocss/webpack@0.57.7(rollup@4.17.2)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(rollup@4.17.2)(vue@3.4.26(typescript@4.9.4))
       eslint:
-        specifier: ^8.54.0
+        specifier: ^8.57.0
         version: 8.57.0
       nuxt:
-        specifier: ^3.8.2
+        specifier: ^3.11.2
         version: 3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@16.18.97)(@unocss/reset@0.59.4)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.17.2))(vue@3.4.26(typescript@4.9.4)))(fuse.js@6.6.2)(ioredis@5.4.1)(optionator@0.9.4)(qrcode@1.5.3)(rollup@4.17.2)(terser@5.31.0)(typescript@4.9.4)(unocss@0.59.4(@unocss/webpack@0.57.7(rollup@4.17.2)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0))
       vue:
-        specifier: ^3.3.8
+        specifier: ^3.4.26
         version: 3.4.26(typescript@4.9.4)
       vue-router:
-        specifier: ^4.2.5
+        specifier: ^4.3.2
         version: 4.3.2(vue@3.4.26(typescript@4.9.4))
 
 packages:
@@ -383,6 +389,11 @@ packages:
 
   '@egoist/tailwindcss-icons@1.7.4':
     resolution: {integrity: sha512-883qx0sqeNb8km7os0w8K6UYue88dbgTWwyEUwW74Bgz0H7t+m7PMIIEvSQ4JqHwA823Qd5ciz+NoTBWKaMYfg==}
+    peerDependencies:
+      tailwindcss: '*'
+
+  '@egoist/tailwindcss-icons@1.8.0':
+    resolution: {integrity: sha512-75LfllKL2lq0sGH+wcpsn/sLtJ0kMkDWmcZTLAB76QLDTmfsFu4QHwZVbtCD2woGyKl9c8KvtOUW9JSjRqOVtA==}
     peerDependencies:
       tailwindcss: '*'
 
@@ -773,11 +784,18 @@ packages:
     resolution: {integrity: sha512-KH6wxzsNys69daSO0xUv0LEBAfhwwjK1M+0Cdi1/vxmifCslMIY7lN11B4eywSfscbyVPAYJvANyc7XiVPImBQ==}
     hasBin: true
 
+  '@nuxt/ui-pro@1.2.0':
+    resolution: {integrity: sha512-lWcCijOqf/5xqjK2vN3e828fzxvun2JgFRgc4q+iG6hn/L2WRvuBAikV4KuAe4NjQGz3J8xT2XzWqs7vitisCw==}
+
   '@nuxt/ui-templates@1.3.3':
     resolution: {integrity: sha512-3BG5doAREcD50dbKyXgmjD4b1GzY8CUy3T41jMhHZXNDdaNwOd31IBq+D6dV00OSrDVhzrTVj0IxsUsnMyHvIQ==}
 
   '@nuxt/ui@2.15.2':
     resolution: {integrity: sha512-3NxFcC0KN4bdTePNKKEVp4tj2BgeuGlucnnOFLVYSdhw60xU0LpFq9wDGeP7BBUl622xF9FnPNiXW5/6RS4i6w==}
+    engines: {node: '>=v16.20.2'}
+
+  '@nuxt/ui@2.16.0':
+    resolution: {integrity: sha512-yHBZjFaN8/Zst+jTv+DfZS2Ep6UhgKlXL3/b6OX1ICwij3Yw7E4qVNCE9f1SO8DUaLigLURUYYoHG6kLb1qyBg==}
     engines: {node: '>=v16.20.2'}
 
   '@nuxt/vite-builder@3.11.2':
@@ -3907,6 +3925,9 @@ packages:
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
 
+  nuxt-highlightjs@1.0.3:
+    resolution: {integrity: sha512-3UEEyVYwjN+tg+gFF2fC/K4+xMiGCQlZ+3c19f3MCa5l90JtV7QXfU/2NpTq3yY3BeAgAYSwLVbP1SWOhVsXaw==}
+
   nuxt-icon@0.6.10:
     resolution: {integrity: sha512-S9zHVA66ox4ZSpMWvCjqKZC4ZogC0s2z3vZs+M4D95YXGPEXwxDZu+insMKvkbe8+k7gvEmtTk0eq3KusKlxiw==}
 
@@ -4675,6 +4696,9 @@ packages:
   smob@1.5.0:
     resolution: {integrity: sha512-g6T+p7QO8npa+/hNx9ohv1E5pVCmWrVCUzUXJyLdMmftX6ER0oiWY/w9knEonLpnOp6b6FenKnMfR8gqwWdwig==}
 
+  smooth-dnd@0.12.1:
+    resolution: {integrity: sha512-Dndj/MOG7VP83mvzfGCLGzV2HuK1lWachMtWl/Iuk6zV7noDycIBnflwaPuDzoaapEl3Pc4+ybJArkkx9sxPZg==}
+
   socks-proxy-agent@8.0.3:
     resolution: {integrity: sha512-VNegTZKhuGq5vSD6XNKlbqWhyt/40CgoEw8XxD6dhnm8Jq9IEa3nIa4HwnM8XOqU0CdB0BwWVXusqiFXfHB3+A==}
     engines: {node: '>= 14'}
@@ -5381,6 +5405,11 @@ packages:
     peerDependencies:
       vue: ^3.2.0
 
+  vue3-smooth-dnd@0.0.6:
+    resolution: {integrity: sha512-CH9ZZhEfE7qU1ef2rlfgBG+nZtQX8PnWlspB2HDDz1uVGU7fXM0Pr65DftBMz4X81S+edw2H+ZFG6Dyb5J81KA==}
+    peerDependencies:
+      vue: ^3.0.11
+
   vue@3.4.26:
     resolution: {integrity: sha512-bUIq/p+VB+0xrJubaemrfhk1/FiW9iX+pDV+62I/XJ6EkspAO9/DXEjbDFoe8pIfOZBqfk45i9BMc41ptP/uRg==}
     peerDependencies:
@@ -5880,6 +5909,13 @@ snapshots:
       postcss-selector-parser: 6.0.16
 
   '@egoist/tailwindcss-icons@1.7.4(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4)))':
+    dependencies:
+      '@iconify/utils': 2.1.23
+      tailwindcss: 3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4))
+    transitivePeerDependencies:
+      - supports-color
+
+  '@egoist/tailwindcss-icons@1.8.0(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4)))':
     dependencies:
       '@iconify/utils': 2.1.23
       tailwindcss: 3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4))
@@ -6421,11 +6457,90 @@ snapshots:
       - rollup
       - supports-color
 
+  '@nuxt/ui-pro@1.2.0(focus-trap@7.5.4)(nuxt@3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@16.18.97)(@unocss/reset@0.59.4)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.17.2))(vue@3.4.26(typescript@4.9.4)))(fuse.js@6.6.2)(ioredis@5.4.1)(optionator@0.9.4)(qrcode@1.5.3)(rollup@4.17.2)(terser@5.31.0)(typescript@4.9.4)(unocss@0.59.4(@unocss/webpack@0.57.7(rollup@4.17.2)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(qrcode@1.5.3)(rollup@4.17.2)(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0))(vue@3.4.26(typescript@4.9.4))':
+    dependencies:
+      '@nuxt/ui': 2.16.0(focus-trap@7.5.4)(nuxt@3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@16.18.97)(@unocss/reset@0.59.4)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.17.2))(vue@3.4.26(typescript@4.9.4)))(fuse.js@6.6.2)(ioredis@5.4.1)(optionator@0.9.4)(qrcode@1.5.3)(rollup@4.17.2)(terser@5.31.0)(typescript@4.9.4)(unocss@0.59.4(@unocss/webpack@0.57.7(rollup@4.17.2)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(qrcode@1.5.3)(rollup@4.17.2)(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0))(vue@3.4.26(typescript@4.9.4))
+      '@vueuse/core': 10.9.0(vue@3.4.26(typescript@4.9.4))
+      defu: 6.1.4
+      git-url-parse: 14.0.0
+      ofetch: 1.3.4
+      parse-git-config: 3.0.0
+      pathe: 1.1.2
+      pkg-types: 1.1.0
+      tailwind-merge: 2.3.0
+      vue3-smooth-dnd: 0.0.6(vue@3.4.26(typescript@4.9.4))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - async-validator
+      - axios
+      - change-case
+      - drauu
+      - focus-trap
+      - idb-keyval
+      - jwt-decode
+      - nprogress
+      - nuxt
+      - qrcode
+      - rollup
+      - sortablejs
+      - supports-color
+      - ts-node
+      - uWebSockets.js
+      - universal-cookie
+      - vite
+      - vue
+
   '@nuxt/ui-templates@1.3.3': {}
 
   '@nuxt/ui@2.15.2(focus-trap@7.5.4)(nuxt@3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@16.18.97)(@unocss/reset@0.59.4)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.17.2))(vue@3.4.26(typescript@4.9.4)))(fuse.js@6.6.2)(ioredis@5.4.1)(optionator@0.9.4)(qrcode@1.5.3)(rollup@4.17.2)(terser@5.31.0)(typescript@4.9.4)(unocss@0.59.4(@unocss/webpack@0.57.7(rollup@4.17.2)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(qrcode@1.5.3)(rollup@4.17.2)(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0))(vue@3.4.26(typescript@4.9.4))':
     dependencies:
       '@egoist/tailwindcss-icons': 1.7.4(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4)))
+      '@headlessui/tailwindcss': 0.2.0(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4)))
+      '@headlessui/vue': 1.7.21(vue@3.4.26(typescript@4.9.4))
+      '@iconify-json/heroicons': 1.1.21
+      '@nuxt/kit': 3.11.2(rollup@4.17.2)
+      '@nuxtjs/color-mode': 3.4.1(rollup@4.17.2)
+      '@nuxtjs/tailwindcss': 6.12.0(rollup@4.17.2)(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4))
+      '@popperjs/core': 2.11.8
+      '@tailwindcss/aspect-ratio': 0.4.2(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4)))
+      '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4)))
+      '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4)))
+      '@tailwindcss/typography': 0.5.13(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4)))
+      '@vueuse/core': 10.9.0(vue@3.4.26(typescript@4.9.4))
+      '@vueuse/integrations': 10.9.0(focus-trap@7.5.4)(fuse.js@6.6.2)(qrcode@1.5.3)(vue@3.4.26(typescript@4.9.4))
+      '@vueuse/math': 10.9.0(vue@3.4.26(typescript@4.9.4))
+      defu: 6.1.4
+      fuse.js: 6.6.2
+      nuxt-icon: 0.6.10(nuxt@3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@16.18.97)(@unocss/reset@0.59.4)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.17.2))(vue@3.4.26(typescript@4.9.4)))(fuse.js@6.6.2)(ioredis@5.4.1)(optionator@0.9.4)(qrcode@1.5.3)(rollup@4.17.2)(terser@5.31.0)(typescript@4.9.4)(unocss@0.59.4(@unocss/webpack@0.57.7(rollup@4.17.2)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0))(vue@3.4.26(typescript@4.9.4))
+      ohash: 1.1.3
+      pathe: 1.1.2
+      scule: 1.3.0
+      tailwind-merge: 2.3.0
+      tailwindcss: 3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - async-validator
+      - axios
+      - change-case
+      - drauu
+      - focus-trap
+      - idb-keyval
+      - jwt-decode
+      - nprogress
+      - nuxt
+      - qrcode
+      - rollup
+      - sortablejs
+      - supports-color
+      - ts-node
+      - uWebSockets.js
+      - universal-cookie
+      - vite
+      - vue
+
+  '@nuxt/ui@2.16.0(focus-trap@7.5.4)(nuxt@3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@16.18.97)(@unocss/reset@0.59.4)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.17.2))(vue@3.4.26(typescript@4.9.4)))(fuse.js@6.6.2)(ioredis@5.4.1)(optionator@0.9.4)(qrcode@1.5.3)(rollup@4.17.2)(terser@5.31.0)(typescript@4.9.4)(unocss@0.59.4(@unocss/webpack@0.57.7(rollup@4.17.2)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(qrcode@1.5.3)(rollup@4.17.2)(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0))(vue@3.4.26(typescript@4.9.4))':
+    dependencies:
+      '@egoist/tailwindcss-icons': 1.8.0(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4)))
       '@headlessui/tailwindcss': 0.2.0(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@16.18.97)(typescript@4.9.4)))
       '@headlessui/vue': 1.7.21(vue@3.4.26(typescript@4.9.4))
       '@iconify-json/heroicons': 1.1.21
@@ -10155,6 +10270,10 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
+  nuxt-highlightjs@1.0.3:
+    dependencies:
+      highlight.js: 11.9.0
+
   nuxt-icon@0.6.10(nuxt@3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@16.18.97)(@unocss/reset@0.59.4)(encoding@0.1.13)(eslint@8.57.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.17.2))(vue@3.4.26(typescript@4.9.4)))(fuse.js@6.6.2)(ioredis@5.4.1)(optionator@0.9.4)(qrcode@1.5.3)(rollup@4.17.2)(terser@5.31.0)(typescript@4.9.4)(unocss@0.59.4(@unocss/webpack@0.57.7(rollup@4.17.2)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0)))(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0))(vue@3.4.26(typescript@4.9.4)):
     dependencies:
       '@iconify/collections': 1.0.419
@@ -11099,6 +11218,8 @@ snapshots:
 
   smob@1.5.0: {}
 
+  smooth-dnd@0.12.1: {}
+
   socks-proxy-agent@8.0.3:
     dependencies:
       agent-base: 7.1.1
@@ -11895,6 +12016,11 @@ snapshots:
       vue: 3.4.26(typescript@4.9.4)
       vue-observe-visibility: 2.0.0-alpha.1(vue@3.4.26(typescript@4.9.4))
       vue-resize: 2.0.0-alpha.1(vue@3.4.26(typescript@4.9.4))
+
+  vue3-smooth-dnd@0.0.6(vue@3.4.26(typescript@4.9.4)):
+    dependencies:
+      smooth-dnd: 0.12.1
+      vue: 3.4.26(typescript@4.9.4)
 
   vue@3.4.26(typescript@4.9.4):
     dependencies:
