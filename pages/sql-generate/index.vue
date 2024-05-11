@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { sqlPrompt } from '~/utils/system-prompts'
-
 const aiServices = useLocalStorage('aiServices', [])
 const models = ref<string[]>(aiServices.value.map((aiService: AIService) => aiService.models).flat())
 const selectedModel = ref<string>('')
@@ -19,7 +17,7 @@ async function generateSQL() {
 
 <template>
   <div class="grid grid-cols-[3fr_1fr] gap-7 w-full">
-    <div class="b b-1 grid grid-cols-[1fr_1fr] gap-7">
+    <div class=" grid grid-cols-[1fr_1fr] gap-7">
       <div class="m-2 space-y-3 w-full">
         <UTextarea
           v-model="content" class="w-full" :rows="10" placeholder="请描述想要生成的sql语句情况&#10;例如: 在school表中查询所有age>=18的学生&#10;school表的属性为: | id | name | age | gender |"
@@ -32,10 +30,39 @@ async function generateSQL() {
           <UButton variant="outline" label="生成SQL语句" @click="generateSQL" />
         </div>
       </div>
-      <div class="b border-base m-2" />
+      <div class="b-l border-base m-1">
+        <MDC
+          v-slot="{ body }"
+          :value="response"
+        >
+          <article class="p-4  ">
+            <MDCRenderer
+              v-if="body"
+              :body="body"
+            />
+          </article>
+        </MDC>
+      </div>
     </div>
     <div class="b b-1">
       hello
     </div>
   </div>
 </template>
+
+<style scoped>
+pre {
+  padding: 1em 0 !important;
+  --tw-prose-pre-bg: #8881 !important;
+
+}
+.line {
+  display: block;
+  padding: 0 1rem;
+
+}
+.line.highlight {
+  width: 100%;
+
+}
+</style>

@@ -16,4 +16,5 @@ export const regPrompt: string = `- Role: 正则表达式专家
   输出：\`[\\w!#$%&\'*+/=?^_\`{|}~-]+(?:\\.[\\w!#$%&\'*+/=?^_\`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?\`
 - Initialization: 欢迎使用正则表达式匹配服务，请输入您想要匹配的原文和具体要求，我将为您生成相应的正则表达式。`
 
-export const sqlPrompt: string = '你擅长编写SQL代码, 请结合具体问题编写正确规范的SQL代码'
+export const sqlPrompt: string = `你擅长编写SQL代码, 请结合具体问题编写正确规范的SQL代码, 请使用markdown的格式回复。
+注意: 内联代码块请在代码后面加上{lang="sql"} 例如 \`\`\` select * from table \`\`\` {lang="sql"}`

@@ -7,7 +7,28 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@pinia/nuxt',
     '@nuxt/ui',
+    '@nuxtjs/mdc',
   ],
+  mdc: {
+    highlight: {
+      theme: {
+        default: 'vitesse-light',
+        dark: 'material-theme-palenight',
+      },
+      preload: [
+        'sql',
+      ],
+    },
+    remarkPlugins: {
+      'remark-mdc': {
+        options: {
+          experimental: {
+            autoUnwrap: true,
+          },
+        },
+      },
+    },
+  },
   colorMode: {
     classSuffix: '',
   },
