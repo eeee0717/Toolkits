@@ -24,6 +24,7 @@ watchEffect(() => {
 })
 
 async function generateSQL() {
+  response.value = '请等待生成'
   const ai = new AI(selectAIService.value.apiUrl, selectAIService.value.apiKey)
   response.value = await ai.getCompletions(selectedModel.value, sqlPrompt, `我的问题是: ${content.value}`).then((response: any) => response)
 }
