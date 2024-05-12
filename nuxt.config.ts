@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/ui',
     '@nuxtjs/mdc',
+    "@nuxt/image"
   ],
   mdc: {
     highlight: {

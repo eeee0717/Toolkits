@@ -19,6 +19,12 @@ const secretKey = useLocalStorage('secretKey', '')
 const taskId = ref<string>('')
 const taskStatus = ref<string>('')
 const taskResult = ref<string>('')
+const files = ref()
+async function onUpload(evt: any) {
+  files.value = evt
+  console.log(files.value[0])
+}
+
 async function onSubmit(key: string) {
   if (key === 'CreateRecTask') {
     await $fetch('/api/createRecTask', {
@@ -96,6 +102,12 @@ async function saveToTxt() {
             </UFormGroup>
             <UFormGroup label="Name">
               <UInput v-model="audioName" />
+            </UFormGroup>
+            <UFormGroup label="音频上传">
+              <UInput
+                type="file"
+                @change="onUpload"
+              />
             </UFormGroup>
             <UFormGroup label="音频Url">
               <UInput v-model="audioUrl" />

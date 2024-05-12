@@ -12,6 +12,7 @@
     "format": "eslint . --fix"
   },
   "dependencies": {
+    "@auth0/auth0-vue": "^2.3.3",
     "@chenfengyuan/vue-qrcode": "^2.0.0",
     "@highlightjs/vue-plugin": "^2.1.0",
     "@nuxt/ui-pro": "^1.2.0",
@@ -25,6 +26,7 @@
     "pinia": "^2.1.7",
     "prism-themes": "1.1.0",
     "prismjs": "^1.29.0",
+    "qiniu": "^7.12.0",
     "qrcode": "^1.5.3",
     "quicktype": "^23.0.158",
     "quicktype-core": "^23.0.158",
@@ -36,6 +38,7 @@
     "@iconify-json/logos": "^1.1.42",
     "@iconify/json": "^2.2.206",
     "@nuxt/devtools": "latest",
+    "@nuxt/image": "^1.7.0",
     "@nuxt/ui": "^2.15.2",
     "@nuxtjs/color-mode": "^3.4.1",
     "@nuxtjs/mdc": "^0.7.0",
@@ -49,5 +52,6 @@
     "nuxt": "^3.11.2",
     "vue": "^3.4.26",
     "vue-router": "^4.3.2"
-  }
+  },
+  "packageManager": "pnpm@8.11.0+sha1.01bf39424f1008f29012bbae851d2acb8a20a0d0"
 }
