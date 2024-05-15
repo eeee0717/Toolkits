@@ -48,7 +48,6 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/login',
       callback: '/confirm',
-      include: ['/audio_2_text(/*)?'],
     },
   },
 })
