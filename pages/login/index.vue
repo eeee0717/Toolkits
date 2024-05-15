@@ -38,7 +38,7 @@ watchEffect(() => {
               block
               label="Google"
               variant="outline"
-              color="gray"
+              color="white"
               @click="auth.signInWithOAuth({ provider: 'google', options: { redirectTo } })"
             />
             <UButton
@@ -47,7 +47,7 @@ watchEffect(() => {
               block
               label="Github"
               variant="outline"
-              color="gray"
+              color="white"
               @click="auth.signInWithOAuth({ provider: 'github', options: { redirectTo } })"
             />
           </Placeholder>
