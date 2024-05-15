@@ -14,6 +14,9 @@ watchEffect(() => {
     avatarUrl.value = userMeta.avatar_url
     isAuth.value = true
   }
+  else {
+    isAuth.value = false
+  }
 })
 function logout() {
   const supabase = useSupabaseClient()
