@@ -2,13 +2,23 @@
 const isAuth = ref(false)
 const user = useSupabaseUser()
 const avatarUrl = ref('')
+const items = [
+  [{
+    label: 'Sign out',
+    icon: 'i-heroicons-arrow-left-on-rectangle',
+  }],
+]
 watchEffect(() => {
-  const userMeta = JSON.parse(JSON.stringify(user.value?.user_metadata))
   if (user.value) {
+    const userMeta = JSON.parse(JSON.stringify(user.value?.user_metadata))
     avatarUrl.value = userMeta.avatar_url
     isAuth.value = true
   }
 })
+function logout() {
+  const supabase = useSupabaseClient()
+  supabase.auth.signOut()
+}
 </script>
 
 <template>
@@ -35,10 +45,19 @@ watchEffect(() => {
     </NuxtLink>
     <div>
       <div v-if="isAuth" class="flex  items-center justify-center">
-        <UAvatar size="xs" :src="avatarUrl" />
+        <UDropdown :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }" :popper="{ placement: 'bottom-start' }">
+          <UAvatar size="xs" :src="avatarUrl" />
+          <template #item="{ item }">
+            <UButton class="w-full" color="gray" variant="ghost" :label="item.label" @click="logout">
+              <template #trailing>
+                <UIcon :name="item.icon" class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto" />
+              </template>
+            </UButton>
+          </template>
+        </UDropdown>
       </div>
       <div v-else class="flex  items-center justify-center">
-        <UButton label="登录" variant="ghost" to="/login" />
+        <UButton label="登录" color="gray" variant="ghost" to="/login" />
       </div>
     </div>
   </nav>
