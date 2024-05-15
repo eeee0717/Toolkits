@@ -1,6 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.BASE_URL || 'http://localhost:3030',
+    },
+  },
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -8,7 +13,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/ui',
     '@nuxtjs/mdc',
-    "@nuxt/image"
+    '@nuxt/image',
+    '@nuxtjs/supabase',
   ],
   mdc: {
     highlight: {
@@ -36,6 +42,13 @@ export default defineNuxtConfig({
   vite: {
     define: {
       global: 'window',
+    },
+  },
+  supabase: {
+    redirectOptions: {
+      login: '/login',
+      callback: '/confirm',
+      include: ['/audio_2_text(/*)?'],
     },
   },
 })
