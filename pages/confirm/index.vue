@@ -1,9 +1,18 @@
 <script setup lang="ts">
 const user = useSupabaseUser()
-
-watch(user, () => {
-  if (user.value)
+watch(user, async () => {
+  if (user.value) {
+    await $fetch('/api/addUser', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: user.value?.id,
+      }),
+    })
     return navigateTo('/')
+  }
 }, { immediate: true })
 </script>
 

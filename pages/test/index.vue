@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const user = useSupabaseUser()
+const client = useSupabaseClient()
 async function test() {
-  await $fetch('/api/checkVip', {
+  await $fetch('/api/addUser', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -10,12 +11,7 @@ async function test() {
       id: user.value?.id,
     }),
   })
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+  console.log('User added')
 }
 </script>
 

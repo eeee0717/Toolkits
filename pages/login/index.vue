@@ -6,7 +6,6 @@ const { auth } = useSupabaseClient()
 const redirectTo = `${useRuntimeConfig().public.baseUrl}/confirm`
 
 watchEffect(() => {
-  console.log('user', user.value)
   if (user.value)
     navigateTo('/')
 })

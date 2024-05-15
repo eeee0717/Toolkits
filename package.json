@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "format": "eslint . --fix"
+    "format": "eslint . --fix",
+    "db:seed": "tsx ./scripts/seed.ts"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.3.3",
