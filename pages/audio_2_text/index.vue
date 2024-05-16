@@ -116,7 +116,7 @@ async function onSubmit(key: string) {
 
 async function saveToTxt() {
   const blob = new Blob([taskResult.value], { type: 'text/plain;charset=utf-8' })
-  saveAs(blob, `${fileName.value}.txt`)
+  saveAs(blob, `${fileName.value.split('.')[0]}.txt`)
 }
 </script>
 
