@@ -34,11 +34,6 @@ async function onSubmit(key: string) {
       toast.add({ title: '请先登录' })
       return
     }
-    if (!vipToken.value) {
-      console.log(vipToken.value)
-      toast.add({ title: '请输入邀请码' })
-      return
-    }
     await $fetch('/api/checkVip', {
       method: 'POST',
       body: JSON.stringify({
@@ -47,24 +42,27 @@ async function onSubmit(key: string) {
       }),
     }).then((res) => {
       isVip.value = res === undefined ? false : res as boolean
+      console.log(isVip.value)
     })
-    if (isVip.value === false)
+    if (isVip.value === false) {
       toast.add({ title: '您不是vip' })
+      return
+    }
 
     // 2. 发送请求
-    // await $fetch('/api/createRecTask', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     engineModelType: engineModelType.value,
-    //     audioUrl: audioUrl.value,
-    //   }),
-    // }).then((res) => {
-    //   if (res === undefined) {
-    //     taskId.value = '请求失败'
-    //     return
-    //   }
-    //   taskId.value = (res as { RequestId: string, TaskId: string }).TaskId
-    // })
+    await $fetch('/api/createRecTask', {
+      method: 'POST',
+      body: JSON.stringify({
+        engineModelType: engineModelType.value,
+        audioUrl: audioUrl.value,
+      }),
+    }).then((res) => {
+      if (res === undefined) {
+        taskId.value = '请求失败'
+        return
+      }
+      taskId.value = (res as { RequestId: string, TaskId: string }).TaskId
+    })
   }
   else if (key === 'DescribeTaskStatus') {
     await $fetch('/api/describeTaskStatus', {

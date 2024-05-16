@@ -3,6 +3,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     vipToken: process.env.VIP_TOKEN,
+    tencent: {
+      secretId: process.env.TENCENT_SECRET_ID,
+      secretKey: process.env.TENCENT_SECRET_KEY,
+    },
     public: {
       baseUrl: process.env.BASE_URL || 'http://localhost:3030',
     },

@@ -4,11 +4,11 @@ export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
     const CommonClient = tencentcloud.CommonClient
-
+    const config = useRuntimeConfig(event)
     const clientConfig = {
       credential: {
-        secretId: body.secretId,
-        secretKey: body.secretKey,
+        secretId: config.tencent.secretId,
+        secretKey: config.tencent.secretKey,
       },
       region: '',
       profile: {
