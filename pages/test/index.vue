@@ -1,22 +1,20 @@
 <script setup lang="ts">
-const user = useSupabaseUser()
-const client = useSupabaseClient()
-async function test() {
-  await $fetch('/api/addUser', {
+async function test(event: any) {
+  const file = event[0]
+  // console.log(file)
+  // upload file https://github.com/nuxt/nuxt/issues/15003
+  const formData = new FormData()
+  formData.append('file', file)
+  await $fetch('/api/uploadFile', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      id: user.value?.id,
-    }),
+    body: formData,
   })
-  console.log('User added')
 }
 </script>
 
 <template>
   <div>
-    <UButton class="w-20 h-10" size="md" @click="test" />
+    <!-- <UButton class="w-20 h-10" size="md" @click="test" /> -->
+    <UInput type="file" @change="test" />
   </div>
 </template>
