@@ -74,6 +74,9 @@ importers:
       tencentcloud-sdk-nodejs-common:
         specifier: ^4.0.849
         version: 4.0.850(encoding@0.1.13)
+      uuid:
+        specifier: ^9.0.1
+        version: 9.0.1
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.16.1
@@ -108,6 +111,9 @@ importers:
       '@types/prismjs':
         specifier: ^1.26.4
         version: 1.26.4
+      '@types/uuid':
+        specifier: ^9.0.8
+        version: 9.0.8
       '@unocss/nuxt':
         specifier: ^0.57.7
         version: 0.57.7(postcss@8.4.38)(rollup@4.17.2)(vite@5.2.11(@types/node@16.18.97)(terser@5.31.0))(webpack@5.91.0(esbuild@0.19.12))
@@ -1701,6 +1707,9 @@ packages:
 
   '@types/urijs@1.19.25':
     resolution: {integrity: sha512-XOfUup9r3Y06nFAZh3WvO0rBU4OtlfPB/vgxpjg+NRdGU6CN6djdc6OEiH+PcqHCY6eFLo9Ista73uarf4gnBg==}
+
+  '@types/uuid@9.0.8':
+    resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
 
   '@types/web-bluetooth@0.0.20':
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
@@ -8507,6 +8516,8 @@ snapshots:
   '@types/unist@3.0.2': {}
 
   '@types/urijs@1.19.25': {}
+
+  '@types/uuid@9.0.8': {}
 
   '@types/web-bluetooth@0.0.20': {}
 

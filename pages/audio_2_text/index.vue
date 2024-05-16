@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { saveAs } from 'file-saver'
+import { v1 as uuid } from 'uuid'
 
 const items = [{
   key: 'CreateRecTask',
@@ -11,20 +12,52 @@ const items = [{
   description: '查询录音转文字任务的处理状态',
 }]
 const user = await useSupabaseUser()
+const config = await useRuntimeConfig()
+const client = await useSupabaseClient()
 const isVip = ref(false)
 const engineModelType = ref<string>('16k_zh')
-const audioFile = ref<string>('')
-const audioUrl = useLocalStorage('audioUrl', '')
+const audioUrl = ref<string>('')
 const vipToken = ref('')
 const taskId = ref<string>('')
 const taskStatus = ref<string>('')
 const taskResult = ref<string>('')
 const toast = useToast()
+const fileName = ref<string>('')
 // https://github.com/nuxt/ui/issues/1727
 async function fileUpload(event: any) {
-  // todo 上传文件
-  const file = event[0]
-  console.log(file)
+  try {
+    const file = event[0]
+    fileName.value = file.name
+    const fileExt = file.name.split('.').pop()
+    const filePath = `${uuid()}.${fileExt}`
+    toast.add({ title: '正在上传' })
+    const { error: uploadError } = await client
+      .storage
+      .from('toolkits-audio')
+      .upload(`${filePath}`, file, {
+        cacheControl: '3600',
+        upsert: false,
+      })
+    if (uploadError)
+      throw uploadError
+
+    const { data: urlData, error: urlError } = await client
+      .storage
+      .from('toolkits-audio')
+      .createSignedUrl(`${filePath}`, 600)
+    if (urlError)
+      throw urlError
+
+    if (urlData === undefined) {
+      toast.add({ title: '上传失败' })
+      return
+    }
+    audioUrl.value = urlData!.signedUrl
+    toast.add({ title: '上传成功' })
+  }
+  catch (error) {
+    toast.add({ title: '上传失败', description: (error as any).message })
+  }
 }
 async function onSubmit(key: string) {
   if (key === 'CreateRecTask') {
@@ -42,7 +75,6 @@ async function onSubmit(key: string) {
       }),
     }).then((res) => {
       isVip.value = res === undefined ? false : res as boolean
-      console.log(isVip.value)
     })
     if (isVip.value === false) {
       toast.add({ title: '您不是vip' })
@@ -84,8 +116,11 @@ async function onSubmit(key: string) {
 
 async function saveToTxt() {
   const blob = new Blob([taskResult.value], { type: 'text/plain;charset=utf-8' })
-  // todo
-  saveAs(blob, `${1}.txt`)
+  saveAs(blob, `${fileName.value}.txt`)
+}
+async function clearStorage() {
+  await client.storage.emptyBucket('toolkits-audio')
+  toast.add({ title: '清空成功' })
 }
 </script>
 
@@ -121,7 +156,7 @@ async function saveToTxt() {
             <UFormGroup label="上传音频">
               <UInput type="file" @change="fileUpload" />
             </UFormGroup>
-            <UFormGroup label="音频Url">
+            <UFormGroup v-if="fileName === ''" label="音频Url">
               <UInput v-model="audioUrl" />
             </UFormGroup>
             <UFormGroup label="请求查询ID">
@@ -146,6 +181,9 @@ async function saveToTxt() {
               </UButton>
               <UButton v-show="item.key === 'DescribeTaskStatus'" type="save" variant="outline" @click.prevent="saveToTxt">
                 保存到txt
+              </UButton>
+              <UButton v-if="user?.id === config.public.adminId" variant="outline" @click="clearStorage">
+                清空存储
               </UButton>
             </div>
           </template>
