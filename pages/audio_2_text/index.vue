@@ -10,40 +10,66 @@ const items = [{
   label: '识别结果查询',
   description: '查询录音转文字任务的处理状态',
 }]
-
+const user = await useSupabaseUser()
+const isVip = ref(false)
 const engineModelType = ref<string>('16k_zh')
-const audioName = useLocalStorage('audioName', '')
+const audioFile = ref<string>('')
 const audioUrl = useLocalStorage('audioUrl', '')
-const secretId = useLocalStorage('secretId', '')
-const secretKey = useLocalStorage('secretKey', '')
+const vipToken = ref('')
 const taskId = ref<string>('')
 const taskStatus = ref<string>('')
 const taskResult = ref<string>('')
-
+const toast = useToast()
+// https://github.com/nuxt/ui/issues/1727
+async function fileUpload(event: any) {
+  // todo 上传文件
+  const file = event[0]
+  console.log(file)
+}
 async function onSubmit(key: string) {
   if (key === 'CreateRecTask') {
-    await $fetch('/api/createRecTask', {
+    // todo 发送请求
+    // 1. check 是否为vip
+    if (!user.value) {
+      toast.add({ title: '请先登录' })
+      return
+    }
+    if (!vipToken.value) {
+      console.log(vipToken.value)
+      toast.add({ title: '请输入邀请码' })
+      return
+    }
+    await $fetch('/api/checkVip', {
       method: 'POST',
       body: JSON.stringify({
-        secretId: secretId.value,
-        secretKey: secretKey.value,
-        engineModelType: engineModelType.value,
-        audioUrl: audioUrl.value,
+        id: user.value?.id,
+        vipToken: vipToken.value,
       }),
     }).then((res) => {
-      if (res === undefined) {
-        taskId.value = '请求失败'
-        return
-      }
-      taskId.value = (res as { RequestId: string, TaskId: string }).TaskId
+      isVip.value = res === undefined ? false : res as boolean
     })
+    if (isVip.value === false)
+      toast.add({ title: '您不是vip' })
+
+    // 2. 发送请求
+    // await $fetch('/api/createRecTask', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     engineModelType: engineModelType.value,
+    //     audioUrl: audioUrl.value,
+    //   }),
+    // }).then((res) => {
+    //   if (res === undefined) {
+    //     taskId.value = '请求失败'
+    //     return
+    //   }
+    //   taskId.value = (res as { RequestId: string, TaskId: string }).TaskId
+    // })
   }
   else if (key === 'DescribeTaskStatus') {
     await $fetch('/api/describeTaskStatus', {
       method: 'POST',
       body: JSON.stringify({
-        secretId: secretId.value,
-        secretKey: secretKey.value,
         taskId: taskId.value,
       }),
     }).then((res) => {
@@ -60,7 +86,8 @@ async function onSubmit(key: string) {
 
 async function saveToTxt() {
   const blob = new Blob([taskResult.value], { type: 'text/plain;charset=utf-8' })
-  saveAs(blob, `${audioName.value}.txt`)
+  // todo
+  saveAs(blob, `${1}.txt`)
 }
 </script>
 
@@ -78,12 +105,10 @@ async function saveToTxt() {
             </p>
           </template>
           <div v-if="item.key === 'CreateRecTask'" class="space-y-3">
-            <UFormGroup label="Secret Id">
-              <UInput v-model="secretId" />
+            <UFormGroup label="邀请码">
+              <UInput v-model="vipToken" />
             </UFormGroup>
-            <UFormGroup label="Secret Key">
-              <UInput v-model="secretKey" />
-            </UFormGroup>
+
             <UFormGroup>
               <template #label>
                 <div class="flex flex-row items-center space-x-3">
@@ -95,8 +120,8 @@ async function saveToTxt() {
               </template>
               <UInput v-model="engineModelType" placeholder="16k_zh, 16k_en..." />
             </UFormGroup>
-            <UFormGroup label="Name">
-              <UInput v-model="audioName" />
+            <UFormGroup label="上传音频">
+              <UInput type="file" @change="fileUpload" />
             </UFormGroup>
             <UFormGroup label="音频Url">
               <UInput v-model="audioUrl" />

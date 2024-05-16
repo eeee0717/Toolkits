@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
-    databaseUrl: process.env.DATABASE_URL,
+    vipToken: process.env.VIP_TOKEN,
     public: {
       baseUrl: process.env.BASE_URL || 'http://localhost:3030',
     },

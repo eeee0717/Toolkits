@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
   }
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-expect-error
-  const { data, error } = await client.from('users').insert([user]).select()
+  const { data, error } = await client.from('users').insert(user).select()
   // eslint-disable-next-line no-console
   console.log(data, error)
 })
