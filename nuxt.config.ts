@@ -2,9 +2,19 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
+    vipToken: process.env.VIP_TOKEN,
+
+    tencent: {
+      secretId: process.env.TENCENT_SECRET_ID,
+      secretKey: process.env.TENCENT_SECRET_KEY,
+    },
     public: {
       baseUrl: process.env.BASE_URL || 'http://localhost:3030',
+      adminId: process.env.ADMIN_ID,
+      bucketName: process.env.BUCKET_NAME,
     },
+    databaseName: process.env.DATABASE_NAME,
+
   },
   modules: [
     '@vueuse/nuxt',
@@ -49,5 +59,6 @@ export default defineNuxtConfig({
       login: '/login',
       callback: '/confirm',
     },
+
   },
 })

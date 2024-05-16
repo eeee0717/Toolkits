@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port 3030",
+    "dev": "nuxt dev --dotenv .env.development --port 3030",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "format": "eslint . --fix"
+    "format": "eslint . --fix",
+    "db:seed": "tsx ./scripts/seed.ts"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.3.3",
@@ -18,12 +19,14 @@
     "@nuxt/ui-pro": "^1.2.0",
     "@pinia/nuxt": "^0.5.1",
     "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.30.10",
     "file-saver": "^2.0.5",
     "highlight.js": "^11.9.0",
     "joi": "^17.13.1",
     "nuxt-highlightjs": "^1.0.3",
     "openai": "^4.41.0",
     "pinia": "^2.1.7",
+    "postgres": "^3.4.4",
     "prism-themes": "1.1.0",
     "prismjs": "^1.29.0",
     "qiniu": "^7.12.0",
@@ -31,7 +34,8 @@
     "quicktype": "^23.0.158",
     "quicktype-core": "^23.0.158",
     "tencentcloud-sdk-nodejs": "^4.0.849",
-    "tencentcloud-sdk-nodejs-common": "^4.0.849"
+    "tencentcloud-sdk-nodejs-common": "^4.0.849",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.16.1",
@@ -45,10 +49,12 @@
     "@nuxtjs/supabase": "^1.2.2",
     "@types/file-saver": "^2.0.7",
     "@types/prismjs": "^1.26.4",
+    "@types/uuid": "^9.0.8",
     "@unocss/nuxt": "^0.57.7",
     "@unocss/preset-icons": "^0.57.7",
     "@unocss/transformer-directives": "^0.59.4",
     "@vueuse/nuxt": "^10.9.0",
+    "drizzle-kit": "^0.21.2",
     "eslint": "^8.57.0",
     "nuxt": "^3.11.2",
     "vue": "^3.4.26",

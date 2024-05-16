@@ -10,6 +10,7 @@
       <div class="w-full container-p-base flex justify-center">
         <slot />
       </div>
+      <UNotifications class="w-100" />
     </div>
   </main>
 </template>
