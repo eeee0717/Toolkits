@@ -33,7 +33,7 @@ async function fileUpload(event: any) {
     toast.add({ title: '正在上传' })
     const { error: uploadError } = await client
       .storage
-      .from(config.public.bucketName)
+      .from(config.public.bucketName as string)
       .upload(`${filePath}`, file, {
         cacheControl: '3600',
         upsert: false,
@@ -43,7 +43,7 @@ async function fileUpload(event: any) {
 
     const { data: urlData, error: urlError } = await client
       .storage
-      .from(config.public.bucketName)
+      .from(config.public.bucketName as string)
       .createSignedUrl(`${filePath}`, 600)
     if (urlError)
       throw urlError
@@ -118,10 +118,6 @@ async function saveToTxt() {
   const blob = new Blob([taskResult.value], { type: 'text/plain;charset=utf-8' })
   saveAs(blob, `${fileName.value}.txt`)
 }
-async function clearStorage() {
-  await client.storage.emptyBucket('toolkits-audio')
-  toast.add({ title: '清空成功' })
-}
 </script>
 
 <template>
@@ -181,9 +177,6 @@ async function clearStorage() {
               </UButton>
               <UButton v-show="item.key === 'DescribeTaskStatus'" type="save" variant="outline" @click.prevent="saveToTxt">
                 保存到txt
-              </UButton>
-              <UButton v-if="user?.id === config.public.adminId" variant="outline" @click="clearStorage">
-                清空存储
               </UButton>
             </div>
           </template>
