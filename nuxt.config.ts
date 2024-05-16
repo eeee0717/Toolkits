@@ -9,7 +9,7 @@ export default defineNuxtConfig({
       secretKey: process.env.TENCENT_SECRET_KEY,
     },
     public: {
-      baseUrl: process.env.BASE_URL || 'http://localhost:3030',
+      baseUrl: process.env.BASE_URL,
       adminId: process.env.ADMIN_ID,
       bucketName: process.env.BUCKET_NAME,
     },
