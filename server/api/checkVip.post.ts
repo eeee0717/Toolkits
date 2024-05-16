@@ -2,8 +2,8 @@ import { serverSupabaseClient } from '#supabase/server'
 import type { User } from '~/types/user'
 
 // 查询用户
-async function getUser(client: any, id: number) {
-  const { data, error } = await client.from('users').select('vip_token').eq('user_id', id)
+async function getUser(client: any, id: number, databaseName: string) {
+  const { data, error } = await client.from(databaseName).select('vip_token').eq('user_id', id)
   if (error)
     throw error
   if (data === null)
@@ -12,10 +12,10 @@ async function getUser(client: any, id: number) {
 }
 
 // 更新用户
-async function updateUser(client: any, id: number, vipToken: string) {
+async function updateUser(client: any, id: number, vipToken: string, databaseName: string) {
   const user: User = { vip_token: vipToken }
 
-  await client.from('users').update(user).eq('user_id', id)
+  await client.from(databaseName).update(user).eq('user_id', id)
 }
 
 export default defineEventHandler(async (event) => {
@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
 
   if (vipToken === '') {
     try {
-      const user = await getUser(client, id)
+      const user = await getUser(client, id, config.databaseName)
       return user?.vip_token === config.vipToken && config.vipToken !== ''
     }
     catch (error) {
@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
   }
   else if (vipToken !== '' && vipToken === config.vipToken) {
     try {
-      await updateUser(client, id, vipToken)
+      await updateUser(client, id, vipToken, config.databaseName)
       return true
     }
     catch (error) {

@@ -11,7 +11,9 @@ export default defineNuxtConfig({
     public: {
       baseUrl: process.env.BASE_URL || 'http://localhost:3030',
       adminId: process.env.ADMIN_ID,
+      bucketName: process.env.BUCKET_NAME,
     },
+    databaseName: process.env.DATABASE_NAME,
 
   },
   modules: [

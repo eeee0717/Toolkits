@@ -33,7 +33,7 @@ async function fileUpload(event: any) {
     toast.add({ title: '正在上传' })
     const { error: uploadError } = await client
       .storage
-      .from('toolkits-audio')
+      .from(config.public.bucketName)
       .upload(`${filePath}`, file, {
         cacheControl: '3600',
         upsert: false,
@@ -43,7 +43,7 @@ async function fileUpload(event: any) {
 
     const { data: urlData, error: urlError } = await client
       .storage
-      .from('toolkits-audio')
+      .from(config.public.bucketName)
       .createSignedUrl(`${filePath}`, 600)
     if (urlError)
       throw urlError
@@ -176,7 +176,7 @@ async function clearStorage() {
           </div>
           <template #footer>
             <div class=" flex items-center justify-center space-x-5">
-              <UButton type="submit" variant="outline">
+              <UButton type="submit" variant="outline" :disabled="audioUrl === ''">
                 {{ item.key === 'CreateRecTask' ? '创建请求' : '查询结果' }}
               </UButton>
               <UButton v-show="item.key === 'DescribeTaskStatus'" type="save" variant="outline" @click.prevent="saveToTxt">
