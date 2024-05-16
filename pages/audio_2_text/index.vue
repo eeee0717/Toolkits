@@ -128,7 +128,7 @@ async function clearStorage() {
   <div>
     <UTabs class="w-full" :items="items">
       <template #item="{ item }">
-        <UCard class="w-200" @submit.prevent="() => onSubmit(item.key)">
+        <UCard class="sm:w-screen-sm p5" @submit.prevent="() => onSubmit(item.key)">
           <template #header>
             <p class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
               {{ item.label }}
