@@ -15,28 +15,34 @@ const aiServices = ref<AIService[]>([{
   models: [],
   checked: false,
 }])
+const aiServicesStorage = useLocalStorage<AIService[]>('aiServices', [])
 
+// 修改 save 函数
 async function save(aiService: AIService) {
-  const ai = new AI(aiService.apiUrl, aiService.apiKey)
-  const models = await ai.getModels()
-  aiService.models = models
-  aiService.checked = true
-  aiServices.value.push({ ...{
-    name: '',
-    apiUrl: '',
-    apiKey: '',
-    selectedModel: '',
-    models: [],
-    checked: false,
-  } })
-  useLocalStorage('aiServices', aiServices.value)
+  try {
+    const ai = new AI(aiService.apiUrl, aiService.apiKey)
+    const models = await ai.getModels()
+    aiService.models = models
+    aiService.checked = true
+
+    // 添加到 aiServices 数组
+    aiServices.value.push(aiService)
+
+    // 同步到 localStorage
+    aiServicesStorage.value = aiServices.value
+
+    console.warn('AI Service saved:', aiServices.value)
+  }
+  catch (error) {
+    console.error('Failed to save AI service:', error)
+  }
 }
 
+// 在 onMounted 中加载数据
 onMounted(() => {
-  const aiServicesFromLocalStorage = useLocalStorage('aiServices', [])
-  if (aiServicesFromLocalStorage.value.length === 0)
-    return
-  aiServices.value = aiServicesFromLocalStorage.value
+  // 从 localStorage 读取数据
+  if (aiServicesStorage.value.length > 0)
+    aiServices.value = aiServicesStorage.value
 })
 </script>
 
